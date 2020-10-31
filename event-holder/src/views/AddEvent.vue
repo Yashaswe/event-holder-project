@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  data(){
+  data() {
     return{
       event:{
         title:'',
@@ -39,12 +39,14 @@ export default {
       }
     }
   },
+
   name:'add',
-  methods:{
+
+  methods: {
     navigateToPreviousPage(){
       this.$router.go(-1)
     },
-    addEvent(){
+    addEvent() {
       this.$router.push({name: 'Events'})
       this.$store.dispatch('addEvent', this.event)
     }
@@ -55,54 +57,53 @@ export default {
 
 <style>
 
-.action.back{
-  float: left;
-  background-color: #E6E6E6;  
-  padding: 15px;
+.action.back {
+  background-color: #E6E6E6;
   border-radius: 20px;
+  float: left;
   font-size: 15px;
+  padding: 15px;
 }
 
-.action.add{
-  width: 25%;
-  margin-top: 20px;
+.action.add {
   background-color: #4A8DA2;
   color: white;
   font-size: 20px;
+  margin-top: 20px;
   padding: 10px;
+  width: 25%;
 }
 
-.add-header{
-  width: 97%;
-  padding: 8px 15px 8px 15px;
-  border-bottom: solid 1px gray;
+.add-header {
   align-content: center;
+  border-bottom: solid 1px gray;
   margin-bottom: 10px;
+  padding: 8px 15px 8px 15px;
+  width: 97%;
 }
 
-.title{
+.title {
   text-align: center;
 }
 
 .addinfo {
-  margin-top: 15px;
-  padding: 20px;
-  font-size: 25px;
-  border-radius: 20px;
-  color: #4A8DA2;
-  border: 2px solid #4A8DA2;
-  outline: none;
-  width: 75%;
-  font-family: serif;
   background-color: #FAFAFA;
+  border-radius: 20px;
+  border: 2px solid #4A8DA2;
+  color: #4A8DA2;
+  font-family: serif;
+  font-size: 25px;
+  margin-top: 15px;
+  outline: none;
+  padding: 20px;
+  width: 75%;
 }
 
-
-textarea{
+textarea {
   height: 100px;
 }
 
-#addEvent{
+#addEvent {
   text-align: center;
 }
 

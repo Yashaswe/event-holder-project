@@ -28,62 +28,66 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       events:null
     }
   },
+
   name: 'events',
+
   methods: {
     navigateToAdd(events){
       this.index=events.length + 1
       this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
     },
   },
-  mounted(){
+
+  mounted() {
     this.events=this.$store.getters.getEvents
   }  
 }
+
 </script>
 
 <style>
 
-
-.header {
-  background-color: #4A8DA2;
-  width: 97%;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.left-header{
-  color:white;
-  font-size: 30px;
-}
-
-.action{
-  padding: 10px;
+.action {
   background-color: white;
   border-radius: 15px;
   border: none;
   outline: none;
+  padding: 10px;
 }
-
-.event{
+.event {
   background-color: #E6E6E6;
   border-radius: 20px;
-  padding: 0px 25px 0px 25px;
-  width: 85%;
   display: flex;
   justify-content: space-between;
   margin: auto;
   margin-top: 10px;
+  padding: 0px 25px 0px 25px;
+  width: 85%;
 }
 
-.event-title{
+.event-title {
   color: #4A8DA2;
 }
+
+.header {
+  background-color: #4A8DA2;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 97%;
+}
+
+.left-header {
+  color:white;
+  font-size: 30px;
+}
+
 
 </style>

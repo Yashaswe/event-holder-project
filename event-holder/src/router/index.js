@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Events from '../views/Events.vue'
+
 import AddEvent from '../views/AddEvent.vue'
+import Events from '../views/Events.vue'
 
 Vue.use(VueRouter)
 
