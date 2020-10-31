@@ -2,34 +2,55 @@
   <div id="addEvent">
     <div class="add-content">
       <div class="add-header">
-        <button class="action back">Back</button>
+        <button class="action back" @click="navigateToPreviousPage">Back</button>
         <div class="title">
           <h2>Add Event</h2>
         </div>
       </div>
       <div class="add-maincontent">
-        <div >
-          <input placeholder="Enter Title..." class="addinfo eventtitle"/>
+        <div>
+          <input placeholder="Enter Title..." class="addinfo eventtitle" v-model="event.title"/>
         </div>
-        <div >
-          <textarea placeholder="Enter Description..." class="addinfo description"/>
+        <div>
+          <textarea placeholder="Enter Description..." class="addinfo description" v-model="event.description"/>
         </div>
-        <div >
-          <input placeholder="Enter Date..." class="addinfo date"/>
+        <div>
+          <input placeholder="Enter Date..." class="addinfo eventdate" v-model="event.date"/>
         </div>
-        <div >
-          <input placeholder="Enter Location..." class="addinfo location"/>
-        </div>  
-        <button class="action add">ADD</button>    
+        <div>
+          <input placeholder="Enter Location..." class="addinfo location" v-model="event.location" />
+        </div>
+        <button class="action add" @click="addEvent">ADD</button>    
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  
+  data(){
+    return{
+      event:{
+        title:'',
+        description:'',
+        date:'',
+        location:''
+      }
+    }
+  },
+  name:'add',
+  methods:{
+    navigateToPreviousPage(){
+      this.$router.go(-1)
+    },
+    addEvent(){
+      this.$router.push({name: 'Events'})
+      this.$store.dispatch('addEvent', this.event)
+    }
+  }  
 }
+
 </script>
 
 <style>
@@ -75,6 +96,7 @@ export default {
   font-family: serif;
   background-color: #FAFAFA;
 }
+
 
 textarea{
   height: 100px;

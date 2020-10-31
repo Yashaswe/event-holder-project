@@ -5,24 +5,24 @@
         Events
       </div>
       <div>
-        <button class="action add-event" @click="navigateToAdd(todos)">
+        <button class="action add-event" @click="navigateToAdd(events)">
           Add event
         </button>
       </div>
     </div>
     <div class="events">
-      <div class="event" v-for="todo in todos" :key="todo.id">
-        <div class="event-title">
-          <h2>
-            Event Title
-          </h2>
+        <div class="event" v-for="event in events" :key="event.id">
+          <div class="event-title">
+            <h2>
+              {{event.title}}
+            </h2>
+          </div>
+          <div class="event-date">
+            <h4>
+              Date: {{event.date}}
+            </h4>
+          </div>        
         </div>
-        <div class="event-date">
-          <h5>
-            Date:3 Nov
-          </h5>
-        </div>        
-      </div>
     </div>
   </div>
 </template>
@@ -31,18 +31,19 @@
 export default {
   data() {
     return {
-      todos:[]
+      events:null
     }
   },
   name: 'events',
   methods: {
-    navigateToAdd(todos){
-      this.index=todos.length+1
-      this.$router.push({name:'AddEvent', params: {id:this.index,todo:null}})
-    }
-  }
-
-  
+    navigateToAdd(events){
+      this.index=events.length + 1
+      this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
+    },
+  },
+  mounted(){
+    this.events=this.$store.getters.getEvents
+  }  
 }
 </script>
 
@@ -73,8 +74,8 @@ export default {
 .event{
   background-color: #E6E6E6;
   border-radius: 20px;
-  padding: 0px 10px 0px 10px;
-  width: 97%;
+  padding: 0px 25px 0px 25px;
+  width: 85%;
   display: flex;
   justify-content: space-between;
   margin: auto;
