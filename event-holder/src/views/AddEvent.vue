@@ -30,12 +30,12 @@
 
 export default {
   data() {
-    return{
-      event:{
-        title:'',
-        description:'',
-        date:'',
-        location:''
+    return {
+      event: {
+        title: '',
+        description: '',
+        date: '',
+        location: ''
       }
     }
   },
@@ -43,7 +43,7 @@ export default {
   name:'add',
 
   methods: {
-    navigateToPreviousPage(){
+    navigateToPreviousPage() {
       this.$router.go(-1)
     },
     addEvent() {
