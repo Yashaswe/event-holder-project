@@ -1,26 +1,26 @@
 <template>
-  <div id="addEvent">
-    <div class="add-content">
-      <div class="add-header">
+  <div id="edit-Event">
+    <div class="edit-content">
+      <div class="edit-header">
         <button class="action back" @click="navigateToPreviousPage">Back</button>
         <div class="title">
-          <h2>Add Event</h2>
+          <h2>Edit Event</h2>
         </div>
       </div>
-      <div class="add-maincontent">
+      <div class="edit-maincontent">
         <div>
-          <input placeholder="Enter Title..." class="addinfo eventtitle" v-model="event.title"/>
+          <input class="edit-info eventtitle" v-model="event.title"/>
         </div>
         <div>
-          <textarea placeholder="Enter Description..." class="addinfo description" v-model="event.description"/>
+          <textarea class="edit-info description" v-model="event.description"/>
         </div>
         <div>
-          <input placeholder="Enter Date..." class="addinfo eventdate" v-model="event.date"/>
+          <input class="edit-info eventdate" v-model="event.date"/>
         </div>
         <div>
-          <input placeholder="Enter Location..." class="addinfo location" v-model="event.location" />
+          <input class="edit-info location" v-model="event.location" />
         </div>
-        <button class="action add" @click="addEvent">SAVE</button>    
+        <button class="action edit" @click="editEvent">SAVE</button>    
       </div>
     </div>
   </div>
@@ -29,26 +29,16 @@
 <script>
 
 export default {
-  data() {
-    return {
-      event: {
-        title: '',
-        description: '',
-        date: '',
-        location: ''
-      }
-    }
-  },
-
-  name:'add',
+  
+  name:'edit',
 
   methods: {
     navigateToPreviousPage() {
       this.$router.go(-1)
     },
-    addEvent() {
+    editEvent() {
       this.$router.push({name: 'Events'})
-      this.$store.dispatch('addEvent', this.event)
+      this.$store.dispatch('editEvent', this.event)
     }
   }  
 }
@@ -65,7 +55,7 @@ export default {
   padding: 15px;
 }
 
-.action.add {
+.action.edit {
   background-color: #4A8DA2;
   color: white;
   font-size: 20px;
@@ -74,7 +64,7 @@ export default {
   width: 25%;
 }
 
-.add-header {
+.edit-header {
   align-content: center;
   border-bottom: solid 1px gray;
   margin-bottom: 10px;
@@ -86,7 +76,7 @@ export default {
   text-align: center;
 }
 
-.addinfo {
+.edit-info {
   background-color: #FAFAFA;
   border-radius: 20px;
   border: 2px solid #4A8DA2;
@@ -103,7 +93,7 @@ textarea {
   height: 100px;
 }
 
-#addEvent {
+#edit-Event {
   text-align: center;
 }
 
