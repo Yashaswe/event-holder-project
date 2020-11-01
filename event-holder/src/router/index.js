@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import AddEvent from '../views/AddEvent.vue'
+import DisplayEvent from '../views/DisplayEvent.vue'
+import EditEvent from '../views/EditEvent.vue'
 import Events from '../views/Events.vue'
 
 Vue.use(VueRouter)
@@ -16,6 +18,16 @@ const routes = [
     path: '/event/add',
     name: 'AddEvent',
     component:AddEvent
+  },
+  {
+    path: '/event/edit/:id',
+    name: 'EditEvent',
+    component: EditEvent
+  },
+  {
+    path: '/event/:id/info',
+    name: 'DisplayEvent',
+    component: DisplayEvent
   }
 ]
 

@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="events">
-        <div class="event" v-for="event in events" :key="event.id">
+        <div class="event" v-for="event in events" :key="event.id" @click="navigateToDisplayEvent(event)">
           <div class="event-title">
             <h2>
               {{event.title}}
@@ -21,7 +21,7 @@
             <h4>
               Date: {{event.date}}
             </h4>
-          </div>        
+          </div>
         </div>
     </div>
   </div>
@@ -39,10 +39,13 @@ export default {
   name: 'events',
 
   methods: {
-    navigateToAdd(events){
+    navigateToAdd(events) {
       this.index=events.length + 1
       this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
     },
+    navigateToDisplayEvent(event) {
+      this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
+    }    
   },
 
   mounted() {
@@ -88,6 +91,5 @@ export default {
   color:white;
   font-size: 30px;
 }
-
 
 </style>

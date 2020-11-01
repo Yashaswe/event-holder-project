@@ -20,7 +20,7 @@
         <div>
           <input placeholder="Enter Location..." class="addinfo location" v-model="event.location" />
         </div>
-        <button class="action add" @click="addEvent">ADD</button>    
+        <button class="action add" @click="addEvent">SAVE</button>
       </div>
     </div>
   </div>
