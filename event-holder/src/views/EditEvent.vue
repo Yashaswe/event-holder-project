@@ -20,7 +20,7 @@
         <div>
           <input class="edit-info location" v-model="event.location" placeholder="Location"/>
         </div>
-        <button class="action edit" @click="editEventFinal(event)">SAVE</button>    
+        <button class="action edit" @click="editEventFinal(event)">SAVE</button>
       </div>
     </div>
   </div>
@@ -29,8 +29,8 @@
 <script>
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       event:null
     }
   },
@@ -43,9 +43,8 @@ export default {
     },
     editEventFinal(event) {
       this.$store.dispatch('editEvent', event)
-      this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})      
-    }
-  
+      this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
+    }  
    },
   mounted() {
     this.event = this.$route.params.event

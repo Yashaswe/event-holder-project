@@ -21,7 +21,7 @@
             <h4>
               Date: {{event.date}}
             </h4>
-          </div>        
+          </div>
         </div>
     </div>
   </div>
@@ -39,11 +39,11 @@ export default {
   name: 'events',
 
   methods: {
-    navigateToAdd(events){
+    navigateToAdd(events) {
       this.index=events.length + 1
       this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
     },
-    navigateToDisplayEvent(event){
+    navigateToDisplayEvent(event) {
       this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
     }    
   },
@@ -91,6 +91,5 @@ export default {
   color:white;
   font-size: 30px;
 }
-
 
 </style>

@@ -11,7 +11,6 @@
         <div class="display-right-header">
           <button class="actiondisplay edit" @click="editEvent(event)">edit</button>
           <button class="actiondisplay delete" @click="deleteEvent(event)">delete</button>
-          
         </div>
       </div>
       <div class="display-maincontent">
@@ -73,40 +72,40 @@
               <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
             </div>
           </div>
-        </div>      
+        </div>
       </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       event:null
     }
   },
+
   name: 'display',
 
   methods: {
     navigateToPreviousPage() {
-      this.$router.go(-1)      
+      this.$router.go(-1)
     },
-    editEvent(event){      
-      this.$router.push({name:'EditEvent',params: {id:event.id,event:event}})   
+    editEvent(event) {
+      this.$router.push({name:'EditEvent',params: {id:event.id,event:event}})
     },
-    deleteEvent(event){
+    deleteEvent(event) {
       this.$store.dispatch('deleteEvent',event)
       this.$router.push({name:'Events'})
     },
-    navigateToEvents(){
+    navigateToEvents() {
       this.$router.push({name:'Events'})
     }
   },
   mounted() {
     this.event=this.$route.params.event
   }  
-  
 }
 </script>
 
@@ -114,81 +113,75 @@ export default {
 
 .actiondisplay {
   background-color: #5B6365;
-  outline: none;
-  border: none;
   border-radius: 15px;
-  padding: 10px 20px 10px 20px;
+  border: none;
   color: white;
   margin: 10px;
+  outline: none;
+  padding: 10px 20px 10px 20px;
 }
 
 .actiondisplay.back {
   background-color: #E6E6E6;
   border-radius: 20px;
+  color: black;
   font-size: 15px;
   padding: 15px;
-  color: black;
 }
 
 .display-header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 8px 15px 8px 15px;
   width: 97%;
-  display: flex;
-  justify-content: space-between;
 }
 
-.title{
+.title {
   color: #4A8DA2;
   margin-left: 85px;
 }
 
-.event-description{
+.event-description {
   background-color: #E6E6E6;
-  width: 85%;
-  padding: 25px;
   border-radius: 20px;
   font-size: 20px;
   margin: auto;
+  padding: 25px;
+  width: 85%;
 }
 
-.participant-header{
+.participant-header {
   display: flex;
   justify-content: space-between;
-  width: 85%;
   margin: auto;
+  width: 85%;
 }
 
-.participant{
+.participant {
   background-color: #4A8DA2;
-  padding: 20px;
   border-radius: 20px;
-  margin-top: 20px;
   color: white;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .participant-content {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.actiondisplay.all-events{
+.actiondisplay.all-events {
   background-color: rgb(255, 123, 0);
-}
+} 
 
- 
-
-#display{
+#display {
   text-align: center;
 }
 
-.display-maincontent{
+.display-maincontent {
   text-align: center;
 }
-
-
-
-
 
 </style>

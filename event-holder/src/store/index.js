@@ -8,7 +8,6 @@ const store = new Vuex.Store ({
     addEvent(context,event) {
       context.commit('addEvent', event)
     },
-
     editEvent(context,event) {
       context.commit('editEvent', event)
     },
@@ -18,29 +17,29 @@ const store = new Vuex.Store ({
   },
 
   getters: {
-    getEvents(state){
+    getEvents(state) {
       return state.events
     },
   },
 
   mutations: {
-    addEvent(state, event){
-      const id=state.events.length+1
+    addEvent(state, event) {
+      const id=state.events.length + 1
       let _event=Object.assign(event,{id :id})
       state.events.push(_event)
     },
 
-    deleteEvent(state, event){
-      state.events.forEach(function(item,index){
-        if(item.id==event.id){
+    deleteEvent(state, event) {
+      state.events.forEach(function(item, index) {
+        if(item.id==event.id) {
           state.events.splice(index, 1)
         }
-      })      
+      })
     },
 
-    editEvent(state, event){
-      state.events.forEach(function(item,index){
-        if(item.id==event.id){
+    editEvent(state, event) {
+      state.events.forEach(function(item, index) {
+        if(item.id==event.id) {
           state.events[index]=event
         }
       })
@@ -49,7 +48,7 @@ const store = new Vuex.Store ({
 
   state: {
     events:[]
-  }  
+  }
 })
 
 export default store
