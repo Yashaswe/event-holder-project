@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store ({
   actions: {
-    addEvent(context,event){
+    addEvent(context,event) {
       context.commit('addEvent', event)
+    },
+
+    editEvent(context,event) {
+      context.commit('editEvent', event)
     }
   },
 
@@ -21,9 +25,17 @@ const store = new Vuex.Store ({
       const id=state.events.length+1
       let _event=Object.assign(event,{id :id})
       state.events.push(_event)
-    }
+    },
+
+    // editEvent(state, event){
+    //   state.events.forEach(function(item,index){
+    //     if(item.id=event.id){
+    //       state.events[index]=event
+    //     }
+    //   })
+    // }
   },
-  
+
   state: {
     events:[]
   }  
