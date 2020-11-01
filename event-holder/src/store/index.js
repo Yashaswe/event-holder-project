@@ -11,13 +11,16 @@ const store = new Vuex.Store ({
 
     editEvent(context,event) {
       context.commit('editEvent', event)
+    },
+    deleteEvent(context,event) {
+      context.commit('deleteEvent', event)
     }
   },
 
   getters: {
     getEvents(state){
       return state.events
-    }
+    },
   },
 
   mutations: {
@@ -27,13 +30,21 @@ const store = new Vuex.Store ({
       state.events.push(_event)
     },
 
-    // editEvent(state, event){
-    //   state.events.forEach(function(item,index){
-    //     if(item.id=event.id){
-    //       state.events[index]=event
-    //     }
-    //   })
-    // }
+    deleteEvent(state, event){
+      state.events.forEach(function(item,index){
+        if(item.id==event.id){
+          state.events.splice(index, 1)
+        }
+      })      
+    },
+
+    editEvent(state, event){
+      state.events.forEach(function(item,index){
+        if(item.id==event.id){
+          state.events[index]=event
+        }
+      })
+    }
   },
 
   state: {

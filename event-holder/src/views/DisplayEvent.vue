@@ -6,29 +6,24 @@
           <button class="actiondisplay back" @click="navigateToPreviousPage">Back</button>
         </div>
         <div class="title">
-          <h1>Event Title</h1>
+          <h1>{{event.title}}</h1>
         </div>
         <div class="display-right-header">
-          <button class="actiondisplay edit" @click="editEvent">edit</button>
-          <button class="actiondisplay delete" @click="deleteEvent">delete</button>
+          <button class="actiondisplay edit" @click="editEvent(event)">edit</button>
+          <button class="actiondisplay delete" @click="deleteEvent(event)">delete</button>
+          
         </div>
       </div>
       <div class="display-maincontent">
-        <p>Date:</p>
-        <h4>location</h4>
+        <p>{{event.date}}</p>
+        <h4>{{event.location}}</h4>
         <div class="event-description">
-          mklllllllllllnvdlfkkkkkkkkecause we are working our way through processing a large volume of applicant material,
-          your application checklist confirming receipt of materials like your transcript, teacher recommendations, etc.
-          is not yet active. Don’t worry—we will turn this on as soon as we know we’ve processed all of the material we
-          have received, likely in early November. If anything is missing, we will give you ample time to resubmit 
-          with no penalty to you. Because we are working our way through processing a large volume of applicant material,
-          your application checklist confirming receipt of materials like your transcript, teacher recommendations, etc. 
-          is not yet active. Don’t worry—we will turn this on as soon as we know we’ve processed all of the material we 
-          have received, likely in early November. If anything is missing, we will give you ample time to resubmit with no
-          penalty to you.
+          Description: {{event.description}}
         </div>
         <br>
         <br>
+        <button class="actiondisplay all-events" @click="navigateToEvents">View All Events</button>
+        <br><br>
         <div class="participant-section">
           <div class="participant-header">
             <h2>Participants</h2>
@@ -86,18 +81,30 @@
 
 <script>
 export default {
+  data(){
+    return {
+      event:null
+    }
+  },
   name: 'display',
 
   methods: {
     navigateToPreviousPage() {
       this.$router.go(-1)      
     },
-    editEvent(){      
-      this.$router.push({name:'EditEvent'})   
+    editEvent(event){      
+      this.$router.push({name:'EditEvent',params: {id:event.id,event:event}})   
     },
-    deleteEvent(){
+    deleteEvent(event){
+      this.$store.dispatch('deleteEvent',event)
       this.$router.push({name:'Events'})
-    }    
+    },
+    navigateToEvents(){
+      this.$router.push({name:'Events'})
+    }
+  },
+  mounted() {
+    this.event=this.$route.params.event
   }  
   
 }
@@ -164,6 +171,10 @@ export default {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.actiondisplay.all-events{
+  background-color: rgb(255, 123, 0);
 }
 
  

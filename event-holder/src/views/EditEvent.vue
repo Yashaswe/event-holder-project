@@ -2,25 +2,25 @@
   <div id="edit-Event">
     <div class="edit-content">
       <div class="edit-header">
-        <button class="action back" @click="navigateToPreviousPage">Back</button>
+        <button class="action back" @click="navigateToPreviousPage(event)">Back</button>
         <div class="title">
           <h2>Edit Event</h2>
         </div>
       </div>
       <div class="edit-maincontent">
         <div>
-          <input class="edit-info eventtitle" v-model="event.title"/>
+          <input class="edit-info eventtitle" v-model="event.title" placeholder="Event Title"/>
         </div>
         <div>
-          <textarea class="edit-info description" v-model="event.description"/>
+          <textarea class="edit-info description" v-model="event.description" placeholder="Description"/>
         </div>
         <div>
-          <input class="edit-info eventdate" v-model="event.date"/>
+          <input class="edit-info eventdate" v-model="event.date" placeholder="Date"/>
         </div>
         <div>
-          <input class="edit-info location" v-model="event.location" />
+          <input class="edit-info location" v-model="event.location" placeholder="Location"/>
         </div>
-        <button class="action edit" @click="editEvent">SAVE</button>    
+        <button class="action edit" @click="editEventFinal(event)">SAVE</button>    
       </div>
     </div>
   </div>
@@ -29,18 +29,27 @@
 <script>
 
 export default {
+  data(){
+    return{
+      event:null
+    }
+  },
   
   name:'edit',
 
   methods: {
-    navigateToPreviousPage() {
-      this.$router.go(-1)
+    navigateToPreviousPage(event) {
+      this.$router.push({name:'DisplayEvent',params:{id:event.id,event:event}})
     },
-    editEvent() {
-      this.$router.push({name: 'Events'})
-      this.$store.dispatch('editEvent', this.event)
+    editEventFinal(event) {
+      this.$store.dispatch('editEvent', event)
+      this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})      
     }
-  }  
+  
+   },
+  mounted() {
+    this.event = this.$route.params.event
+  }
 }
 
 </script>

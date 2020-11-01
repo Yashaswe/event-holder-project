@@ -44,7 +44,7 @@ export default {
       this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
     },
     navigateToDisplayEvent(event){
-      this.$router.push({name:'DisplayEvent', params: {id:event.id,event:event}})
+      this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
     }    
   },
 
