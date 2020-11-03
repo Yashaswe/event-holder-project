@@ -11,6 +11,9 @@
       </div>
     </div>
     <div class="events">
+      <div v-if="!events.length" class="no_events">
+        <b>No upcoming Events</b>
+      </div>
         <div class="event" v-for="event in events" :key="event.id" @click="navigateToDisplayEvent(event)">
           <div class="event-title">
             <h2>
@@ -32,16 +35,15 @@
 export default {
   data() {
     return {
-      events:null
+      events:{}
     }
   },
 
   name: 'events',
 
   methods: {
-    navigateToAdd(events) {
-      this.index=events.length + 1
-      this.$router.push({name:'AddEvent', params: {id:this.index,event:null}})
+    navigateToAdd() {
+      this.$router.push({name:'AddEvent', params: {event:null}})
     },
     navigateToDisplayEvent(event) {
       this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
@@ -90,6 +92,13 @@ export default {
 .left-header {
   color:white;
   font-size: 30px;
+}
+
+.no_events{
+  text-align: center;
+  margin: 50px;
+  font-size: 30px;
+  color:#611bc4;
 }
 
 </style>

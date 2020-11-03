@@ -26,50 +26,15 @@
         <div class="participant-section">
           <div class="participant-header">
             <h2>Participants</h2>
-            <button class="actiondisplay add">Add</button>
+            <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
           </div>
-          <div class="participant-content">
-            <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
-            </div>
-             <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
-            </div>
-            <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
-            </div>
-            <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
-            </div>
-            <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
-            </div>
-            <div class="participant">
-              <h2>Participant's Name</h2>
-              <p>Occupation</p>
-              <p>address</p>
-              <button class="actiondisplay participant-edit" @click="editEventParticipant">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteEventParticipant">delete</button>
+          <div class="participant-content">         
+            <div class="participant" v-for="participant in event.participants" :key="participant.id">
+              <h2>{{participant.name}}</h2>
+              <p>{{participant.occupation}}</p>
+              <p>{{participant.address}}</p>
+              <button class="actiondisplay participant-edit">edit</button>
+              <button class="actiondisplay participant-delete">delete</button>
             </div>
           </div>
         </div>
@@ -82,7 +47,7 @@
 export default {
   data() {
     return {
-      event:null
+      event:{}
     }
   },
 
@@ -93,7 +58,7 @@ export default {
       this.$router.go(-1)
     },
     editEvent(event) {
-      this.$router.push({name:'EditEvent',params: {id:event.id,event:event}})
+      this.$router.push({name:'EditEvent',params: {id:event.id,event: event}})
     },
     deleteEvent(event) {
       this.$store.dispatch('deleteEvent',event)
@@ -101,6 +66,9 @@ export default {
     },
     navigateToEvents() {
       this.$router.push({name:'Events'})
+    },
+    addParticipant(event) {
+      this.$router.push({name:'AddParticipant',params: {id: event.id,event: event}})
     }
   },
   mounted() {
@@ -147,6 +115,7 @@ export default {
   border-radius: 20px;
   font-size: 20px;
   margin: auto;
+  justify-content: center;
   padding: 25px;
   width: 85%;
 }
@@ -173,7 +142,7 @@ export default {
 }
 
 .actiondisplay.all-events {
-  background-color: rgb(255, 123, 0);
+  background-color: #611bc4;
 } 
 
 #display {
