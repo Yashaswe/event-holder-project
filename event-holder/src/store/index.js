@@ -11,8 +11,8 @@ const store = new Vuex.Store ({
     editEvent(context,event) {
       context.commit('editEvent', event)
     },
-    addParticipant(context,{participant,event}) {
-      context.commit('addParticipant', participant,event)
+    addParticipant(context,payload) {
+      context.commit('addParticipant', payload)
     },
     deleteEvent(context,event) {
       context.commit('deleteEvent', event)
@@ -32,12 +32,13 @@ const store = new Vuex.Store ({
       state.events.push(_event)
     },
 
-    addParticipant(state, {participant,event}) {
+    addParticipant(state, payload) {
       state.events.forEach(function(item, index) {
-        if(item.id==event.id) {
+        if(item.id==payload.event.id) {
           const participantid=state.events[index].participants.length + 1
-          let _participants=Object.assign(participant,{participantid:participantid})
-          state.events[index].participants.push(_participants)
+          console.log(participantid)
+          let _participants=Object.assign(payload.participant,{participantid:participantid})
+          state.events[index].event.participants.push(_participants)
         }
       })
     },
