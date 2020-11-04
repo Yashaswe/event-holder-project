@@ -35,10 +35,9 @@ const store = new Vuex.Store ({
     addParticipant(state, payload) {
       state.events.forEach(function(item, index) {
         if(item.id==payload.event.id) {
-          const participantid=state.events[index].participants.length + 1
-          console.log(participantid)
-          let _participants=Object.assign(payload.participant,{participantid:participantid})
-          state.events[index].event.participants.push(_participants)
+          const participantId=state.events[index].participants.length + 1
+          let _participants=Object.assign(payload.participant,{participantid:participantId})
+          state.events[index].participants.push(_participants)
         }
       })
     },
