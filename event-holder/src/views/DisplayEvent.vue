@@ -1,5 +1,5 @@
 <template>
-  <div id="display">
+  <div id="display" v-if="event">
     <div class="display-content">
       <div class="display-header">
         <div>
@@ -47,7 +47,7 @@
 export default {
   data() {
     return {
-      event:{}
+      event: null
     }
   },
 
