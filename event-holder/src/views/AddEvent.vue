@@ -36,13 +36,7 @@ export default {
         description: '',
         date: '',
         location: '',
-        participants: [
-          {
-            name: '',
-            occupation: '',
-            address: ''
-          }
-        ]
+        participants: []
       }
     }
   },

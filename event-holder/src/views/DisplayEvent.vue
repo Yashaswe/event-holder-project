@@ -29,12 +29,12 @@
             <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
           </div>
           <div class="participant-content">         
-            <div class="participant" v-for="participant in event.participants" :key="participant.id">
+            <div class="participant" v-for="participant in event.participants" :key="participant.participantId">
               <h2>{{participant.name}}</h2>
               <p>{{participant.occupation}}</p>
               <p>{{participant.address}}</p>
-              <button class="actiondisplay participant-edit">edit</button>
-              <button class="actiondisplay participant-delete">delete</button>
+              <button class="actiondisplay participant-edit" @click="editParticipantInfo(participant,event)">edit</button>
+              <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
             </div>
           </div>
         </div>
@@ -47,7 +47,8 @@
 export default {
   data() {
     return {
-      event: null
+      event: null,
+      participant: {}
     }
   },
 
@@ -69,7 +70,13 @@ export default {
     },
     addParticipant(event) {
       this.$router.push({name:'AddParticipant',params: {id: event.id,event: event}})
-    }
+    },
+    editParticipantInfo(event,participant) {
+      this.$router.push({name: 'EditParticipant',params: {participantid:participant.participantid,participant: participant,event:event}})
+    },
+    // deleteParticipant() {
+    //   this.$store.dispatch('deleteParticipant',participant)      
+    // }
   },
   mounted() {
     this.event=this.$route.params.event
@@ -142,7 +149,7 @@ export default {
 }
 
 .actiondisplay.all-events {
-  background-color: #611bc4;
+  background-color: #E06777;
 } 
 
 #display {

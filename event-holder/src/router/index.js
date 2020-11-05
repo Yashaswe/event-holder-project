@@ -6,6 +6,7 @@ import DisplayEvent from '../views/DisplayEvent.vue'
 import EditEvent from '../views/EditEvent.vue'
 import Events from '../views/Events.vue'
 import AddParticipant from '../views/AddParticipant.vue'
+import EditParticipant from '../views/EditParticipant.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/event/:id/add/participant',
     name: 'AddParticipant',
     component: AddParticipant
+  },
+  {
+    path: '/event/participant/edit/:participantid',
+    name: 'EditParticipant',
+    component: EditParticipant
   }
 ]
 
