@@ -33,16 +33,16 @@ const store = new Vuex.Store ({
 
   mutations: {
     addEvent(state, event) {
-      const id=state.events.length + 1
-      let _event=Object.assign(event,{id :id})
+      const id = state.events.length + 1
+      let _event=Object.assign(event, { id: id })
       state.events.push(_event)
     },
 
     addParticipant(state, payload) {
       state.events.forEach(function(item, index) {
-        if(item.id==payload.event.id) {
-          const participantId=state.events[index].participants.length + 1
-          let _participants=Object.assign(payload.participant,{participantid:participantId})
+        if (item.id == payload.event.id) {
+          const participantId = state.events[index].participants.length + 1
+          let _participants = Object.assign(payload.participant, { participantid: participantId })
           state.events[index].participants.push(_participants)
         }
       })
@@ -50,7 +50,7 @@ const store = new Vuex.Store ({
 
     deleteEvent(state, event) {
       state.events.forEach(function(item, index) {
-        if(item.id==event.id) {
+        if (item.id == event.id) {
           state.events.splice(index, 1)
         }
       })
@@ -59,7 +59,7 @@ const store = new Vuex.Store ({
     editEvent(state, event) {
       state.events.forEach(function(item, index) {
         if(item.id==event.id) {
-          state.events[index]=event
+          state.events[index] = event
         }
       })
     },
