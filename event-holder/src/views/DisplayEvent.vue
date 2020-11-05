@@ -29,7 +29,7 @@
             <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
           </div>
           <div class="participant-content">         
-            <div class="participant" v-for="participant in event.participants" :key="participant.participantId">
+            <div class="participant" v-for="participant in event.participants" :key="participant.participantid">
               <h2>{{participant.name}}</h2>
               <p>{{participant.occupation}}</p>
               <p>{{participant.address}}</p>
@@ -72,7 +72,10 @@ export default {
       this.$router.push({name:'AddParticipant',params: {id: event.id,event: event}})
     },
     editParticipantInfo(event,participant) {
-      this.$router.push({name: 'EditParticipant',params: {participantid:participant.participantid,participant: participant,event:event}})
+      // this.eventid=event
+      // console.log(eventid)
+      // this.participantid=this.$store.getters.getParticipant({eventid,participant})
+      this.$router.push({name: 'EditParticipant',params: {participant: participant,event:event}})
     },
     // deleteParticipant() {
     //   this.$store.dispatch('deleteParticipant',participant)      
