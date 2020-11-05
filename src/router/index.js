@@ -37,7 +37,7 @@ const routes = [
     component: AddParticipant
   },
   {
-    path: '/event/participant/edit',
+    path: '/event/participant/:participantid/edit',
     name: 'EditParticipant',
     component: EditParticipant
   }

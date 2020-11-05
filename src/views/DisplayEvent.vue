@@ -75,7 +75,7 @@ export default {
       // this.eventid=event
       // console.log(eventid)
       // this.participantid=this.$store.getters.getParticipant({eventid,participant})
-      this.$router.push({name: 'EditParticipant',params: {participant: participant,event:event}})
+      this.$router.push({name: 'EditParticipant',params: {participantid: participant.id, participant: participant, event:event}})
     },
     // deleteParticipant() {
     //   this.$store.dispatch('deleteParticipant',participant)      
