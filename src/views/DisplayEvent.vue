@@ -72,9 +72,7 @@ export default {
       this.$router.push({name:'AddParticipant',params: {id: event.id,event: event}})
     },
     editParticipantInfo(event,participant) {
-console.log('display page',participant)
-      this.$router.push({name: 'EditParticipant',params: {participantid: participant.participantid, participant: participant, event:event}})
-      
+      this.$router.push({name: 'EditParticipant',params: {participantid: participant.participantid, participant: participant, event:event}})      
     },
   },
   mounted() {

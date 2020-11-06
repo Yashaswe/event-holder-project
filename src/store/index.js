@@ -26,9 +26,6 @@ const store = new Vuex.Store ({
     getEvents(state) {
       return state.events
     },
-    // getParticipant(state,{eventid,participant}) {
-    //   return state.events[eventid].participant.participantid
-    // },
   },
 
   mutations: {
@@ -68,7 +65,7 @@ const store = new Vuex.Store ({
       state.events.forEach(function(item, index) {
         if(item.id==payload.event.id) {
           state.events.forEach(function(itemparticipant, kindex) {
-            if(itemparticipant.id==payload.participant.participantid) {
+            if(itemparticipant.participantid==payload.participant.participantid) {
               state.events[index].payload.participants[kindex]=payload.participant
             }
           })
