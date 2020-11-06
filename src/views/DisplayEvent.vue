@@ -33,7 +33,7 @@
               <h2>{{participant.name}}</h2>
               <p>{{participant.occupation}}</p>
               <p>{{participant.address}}</p>
-              <button class="actiondisplay participant-edit" @click="editParticipantInfo(participant,event)">edit</button>
+              <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
               <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
             </div>
           </div>
@@ -72,14 +72,10 @@ export default {
       this.$router.push({name:'AddParticipant',params: {id: event.id,event: event}})
     },
     editParticipantInfo(event,participant) {
-      // this.eventid=event
-      // console.log(eventid)
-      // this.participantid=this.$store.getters.getParticipant({eventid,participant})
-      this.$router.push({name: 'EditParticipant',params: {participantid: participant.id, participant: participant, event:event}})
+console.log('display page',participant)
+      this.$router.push({name: 'EditParticipant',params: {participantid: participant.participantid, participant: participant, event:event}})
+      
     },
-    // deleteParticipant() {
-    //   this.$store.dispatch('deleteParticipant',participant)      
-    // }
   },
   mounted() {
     this.event=this.$route.params.event

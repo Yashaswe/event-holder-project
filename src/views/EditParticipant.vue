@@ -40,6 +40,7 @@ export default {
       this.$router.push({name: 'DisplayEvent', params:{id:event.id, event: event}})
     },
     editParticipant(participant,event) {
+      console.log('edit page',this.participant.name)
       this.$store.dispatch('editParticipant', {participant, event})
       this.$router.push({name: 'DisplayEvent', params:{id: event.id, event: this.event}})
     }
