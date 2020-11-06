@@ -19,6 +19,9 @@ const store = new Vuex.Store ({
     },
     deleteEvent(context,event) {
       context.commit('deleteEvent', event)
+    },
+    deleteParticipant(context,payload) {
+      context.commit('deleteParticipant', payload)
     }
   },
 
@@ -64,9 +67,22 @@ const store = new Vuex.Store ({
     editParticipant(state, payload) {
       state.events.forEach(function(item, index) {
         if(item.id==payload.event.id) {
-          state.events.forEach(function(itemparticipant, kindex) {
+          state.events[index].participants.forEach(function(itemparticipant, kindex) {
             if(itemparticipant.participantid==payload.participant.participantid) {
-              state.events[index].payload.participants[kindex]=payload.participant
+              console.log('hi')
+              state.events[index].participants[kindex]=payload.participant
+            }
+          })
+        }
+      })
+    },
+
+    deleteParticipant(state,payload) {
+      state.events.forEach(function(item, index) {
+        if(item.id==payload.event.id) {
+          state.events[index].participants.forEach(function(itemparticipant, kindex) {
+            if(itemparticipant.participantid==payload.participant.participantid) {
+              state.events[index].participants.splice(kindex, 1)
             }
           })
         }
@@ -75,7 +91,7 @@ const store = new Vuex.Store ({
   },
 
   state: {
-    events:[]
+    events: []
   }
 })
 

@@ -34,7 +34,7 @@
               <p>{{participant.occupation}}</p>
               <p>{{participant.address}}</p>
               <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
+              <button class="actiondisplay participant-delete" @click="deleteParticipant(event,participant)">delete</button>
             </div>
           </div>
         </div>
@@ -74,6 +74,10 @@ export default {
     editParticipantInfo(event,participant) {
       this.$router.push({name: 'EditParticipant',params: {participantid: participant.participantid, participant: participant, event:event}})      
     },
+    deleteParticipant(event,participant) {
+      console.log('here',participant)
+      this.$store.dispatch('deleteParticipant', {event,participant})
+    }
   },
   mounted() {
     this.event=this.$route.params.event
