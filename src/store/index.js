@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const events="events-storage"
+
 const store = new Vuex.Store ({
   actions: {
     addEvent(context,event) {
@@ -36,6 +38,7 @@ const store = new Vuex.Store ({
       const id = state.events.length + 1
       let _event=Object.assign(event, { id: id })
       state.events.push(_event)
+      localStorage.setItem('events',JSON.stringify(state.events))
     },
 
     addParticipant(state, payload) {
@@ -54,6 +57,7 @@ const store = new Vuex.Store ({
           state.events.splice(index, 1)
         }
       })
+      localStorage.setItem('events',JSON.stringify(state.events))
     },
 
     editEvent(state, event) {
@@ -62,6 +66,7 @@ const store = new Vuex.Store ({
           state.events[index] = event
         }
       })
+      localStorage.setItem('events',JSON.stringify(state.events))
     },
 
     editParticipant(state, payload) {
@@ -91,7 +96,7 @@ const store = new Vuex.Store ({
   },
 
   state: {
-    events: []
+    events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem(events)) : []
   }
 })
 
