@@ -1,8 +1,8 @@
 <template>
-  <div id="edit-Event">
+  <div id="edit-Event" v-if="event">
     <div class="edit-content">
       <div class="edit-header">
-        <button class="action back" @click="navigateToPreviousPage(event)">Back</button>
+        <button class="action back" @click="navigateToPreviousPage(notupdatedevent)">Back</button>
         <div class="title">
           <h2>Edit Event</h2>
         </div>
@@ -31,23 +31,28 @@
 export default {
   data() {
     return {
-      event:null
+      event: null,
+      notupdatedevent:null
     }
   },
   
   name:'edit',
 
   methods: {
-    navigateToPreviousPage(event) {
-      this.$router.push({name:'DisplayEvent',params:{id:event.id,event:event}})
+    navigateToPreviousPage(notupdatedevent) { 
+      console.log(this.notupdatedevent)     
+      this.$router.push({name:'DisplayEvent',params:{id:notupdatedevent.id,event:notupdatedevent}})
     },
     editEventFinal(event) {
+      console.log('edit',event)
       this.$store.dispatch('editEvent', event)
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
     }  
    },
   mounted() {
     this.event = this.$route.params.event
+    this.notupdatedevent = this.$route.params.event
+    this.participant = this.$route.params.participant
   }
 }
 

@@ -1,26 +1,23 @@
 <template>
-  <div id="addEvent">
+  <div id="addParticipant">
     <div class="add-content">
       <div class="add-header">
-        <button class="action back" @click="navigateToPreviousPage">Back</button>
+        <button class="action back" @click="navigateToPreviousPage(event)">Back</button>
         <div class="title">
-          <h2>Add Event</h2>
+          <h2>Add Participant</h2>
         </div>
       </div>
       <div class="add-maincontent">
         <div>
-          <input placeholder="Enter Title..." class="addinfo eventtitle" v-model="event.title"/>
+          <input placeholder="Enter Name..." class="participantinfo name" v-model="participant.name"/>
         </div>
         <div>
-          <textarea placeholder="Enter Description..." class="addinfo description" v-model="event.description"/>
+          <input placeholder="Enter Occupation..." class="participantinfo occupation" v-model="participant.occupation"/>
         </div>
         <div>
-          <input placeholder="Enter Date..." class="addinfo eventdate" v-model="event.date"/>
+          <input placeholder="Enter address..." class="participantinfo address" v-model="participant.address"/>
         </div>
-        <div>
-          <input placeholder="Enter Location..." class="addinfo location" v-model="event.location" />
-        </div>
-        <button class="action add" @click="addEvent">SAVE</button>
+        <button class="action add" @click="addParticipant()">SAVE</button>   
       </div>
     </div>
   </div>
@@ -31,26 +28,25 @@
 export default {
   data() {
     return {
-      event: {
-        title: '',
-        description: '',
-        date: '',
-        location: ''
-      }
+      event: {},
+      participant: {}
     }
   },
 
-  name:'add',
+  name:'add-participant',
 
   methods: {
-    navigateToPreviousPage() {
-      this.$router.go(-1)
+    navigateToPreviousPage(event) {
+      this.$router.push({name: 'DisplayEvent', params:{id:event.id, event: event}})
     },
-    addEvent() {
-      this.$router.push({name: 'Events'})
-      this.$store.dispatch('addEvent', this.event)
+    addParticipant() {
+      this.$store.dispatch('addParticipant', {participant: this.participant, event: this.event})
+      this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
     }
-  }  
+  },
+  mounted() {
+    this.event=this.$route.params.event  
+  } 
 }
 
 </script>
@@ -86,7 +82,7 @@ export default {
   text-align: center;
 }
 
-.addinfo {
+.participantinfo {
   background-color: #FAFAFA;
   border-radius: 20px;
   border: 2px solid #4A8DA2;
@@ -99,11 +95,7 @@ export default {
   width: 75%;
 }
 
-textarea {
-  height: 100px;
-}
-
-#addEvent {
+#addParticipant {
   text-align: center;
 }
 
