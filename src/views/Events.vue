@@ -92,15 +92,15 @@ export default {
 }
 
 .left-header {
-  color:white;
+  color: white;
   font-size: 30px;
 }
 
-.no_events{
+.no_events {
   text-align: center;
   margin: 150px;
   font-size: 30px;
-  color:#E06777;
+  color: #E06777;
 }
 
 </style>

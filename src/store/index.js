@@ -5,8 +5,6 @@ import { v4 as uuid } from 'uuid'
 
 Vue.use(Vuex)
 
-// const events="events-storage"
-
 const store = new Vuex.Store ({
   actions: {
     addEvent(context,event) {
