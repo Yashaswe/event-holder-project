@@ -1,5 +1,16 @@
 # event-holder
 
+## First clone the repository
+
+```
+$ git clone https://gitlab.com/yashaswe/event-holder.git
+```
+
+## Navigate to project directory
+```
+$ cd event-holder
+```
+
 ## Project setup
 ```
 yarn install

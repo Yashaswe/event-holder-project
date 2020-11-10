@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { v4 as uuid } from 'uuid'
+
 Vue.use(Vuex)
 
-const events="events-storage"
+// const events="events-storage"
 
 const store = new Vuex.Store ({
   actions: {
@@ -35,7 +37,8 @@ const store = new Vuex.Store ({
 
   mutations: {
     addEvent(state, event) {
-      const id = state.events.length + 1
+      const id = uuid()
+      console.log(id)
       let _event=Object.assign(event, { id: id })
       state.events.push(_event)
       localStorage.setItem('events',JSON.stringify(state.events))
@@ -44,11 +47,12 @@ const store = new Vuex.Store ({
     addParticipant(state, payload) {
       state.events.forEach(function(item, index) {
         if (item.id == payload.event.id) {
-          const participantId = state.events[index].participants.length + 1
+          const participantId = uuid()
           let _participants = Object.assign(payload.participant, { participantid: participantId })
           state.events[index].participants.push(_participants)
         }
       })
+      localStorage.setItem('events',JSON.stringify(state.events))
     },
 
     deleteEvent(state, event) {
@@ -74,12 +78,12 @@ const store = new Vuex.Store ({
         if(item.id==payload.event.id) {
           state.events[index].participants.forEach(function(itemparticipant, kindex) {
             if(itemparticipant.participantid==payload.participant.participantid) {
-              console.log('hi')
               state.events[index].participants[kindex]=payload.participant
             }
           })
         }
       })
+      localStorage.setItem('events',JSON.stringify(state.events))
     },
 
     deleteParticipant(state,payload) {
@@ -92,11 +96,12 @@ const store = new Vuex.Store ({
           })
         }
       })
+      localStorage.setItem('events',JSON.stringify(state.events))
     }
   },
 
   state: {
-    events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem(events)) : []
+    events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
   }
 })
 
