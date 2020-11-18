@@ -7,25 +7,20 @@
           <h2>Edit Participant Information</h2>
         </div>
       </div>
-      <div class="edit-participant-maincontent">
-        <div>
-          <input placeholder="Enter Name..." class="participantinfo name" v-model="participant.name"/>
-        </div>
-        <div>
-          <input placeholder="Enter Occupation..." class="participantinfo occupation" v-model="participant.occupation"/>
-        </div>
-        <div>
-          <input placeholder="Enter address..." class="participantinfo address" v-model="participant.address"/>
-        </div>
-        <button class="action edit-participant" @click="editParticipant(participant,event)">SAVE</button>   
-      </div>
+      <ParticipantForm @updateParticipant:participant="editParticipant" :participant="participant"/> 
     </div>
   </div>
 </template>
 
 <script>
 
+import ParticipantForm from '../component/ParticipantForm.vue'
+
 export default {
+  components: {
+    ParticipantForm
+  },
+
   data() {
     return {
       event: {},

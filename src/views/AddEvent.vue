@@ -6,7 +6,7 @@
           <h2>Add Event</h2>
         </div>
       </div>
-    <Event-form @saveEvent:event="saveEvent"/>  
+    <Event-form @saveEvent:event="eventEvent"/>  
   </div>
 </template>
 

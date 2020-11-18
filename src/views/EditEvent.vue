@@ -1,5 +1,5 @@
 <template>
-  <div id="edit-Event" v-if="event">
+  <div id="edit-Event">
     <div class="edit-content">
       <div class="edit-header">
         <button class="action back" @click="navigateToPreviousPage(notupdatedevent)">Back</button>
@@ -7,19 +7,19 @@
           <h2>Edit Event</h2>
         </div>
       </div>
-      <!-- <Event-form @update:event="update" :event="event" v-if="event"/>
-      <div v-else>Loading...</div>          -->
+      <Event-form @update:event="editEventFinal" :event="event" v-if="event"/>
+      <div v-else>Loading...</div>         
     </div>
   </div>
 </template>
 
 <script>
 
-// import EventForm from '../component/EventForm.vue'
+import EventForm from '../component/EventForm.vue'
 
 export default {
   components: {
-    // EventForm
+    EventForm
   },
 
   data() {
@@ -33,7 +33,7 @@ export default {
 
   methods: {
     navigateToPreviousPage(notupdatedevent) { 
-      console.log(this.notupdatedevent)     
+      console.log('notupdate',notupdatedevent)     
       this.$router.push({name:'DisplayEvent',params:{id:notupdatedevent.id,event:notupdatedevent}})
     },
     editEventFinal(event) {
