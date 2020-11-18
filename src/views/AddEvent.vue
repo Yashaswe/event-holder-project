@@ -6,7 +6,7 @@
           <h2>Add Event</h2>
         </div>
       </div>
-    <Event-form></Event-form>    
+    <Event-form @saveEvent:event="saveEvent"/>  
   </div>
 </template>
 
@@ -34,7 +34,11 @@ export default {
   methods: {
     navigateToPreviousPage() {
       this.$router.go(-1)
-    }
+    },
+    saveEvent(event) {
+      this.$store.dispatch('addEvent', event)
+      this.$router.push({name: 'Events'})
+    }  
   }
 }
 

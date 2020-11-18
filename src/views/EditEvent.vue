@@ -7,18 +7,19 @@
           <h2>Edit Event</h2>
         </div>
       </div>
-      <Event-form></Event-form>            
+      <!-- <Event-form @update:event="update" :event="event" v-if="event"/>
+      <div v-else>Loading...</div>          -->
     </div>
   </div>
 </template>
 
 <script>
 
-import EventForm from '../component/EventForm.vue'
+// import EventForm from '../component/EventForm.vue'
 
 export default {
   components: {
-    EventForm
+    // EventForm
   },
 
   data() {

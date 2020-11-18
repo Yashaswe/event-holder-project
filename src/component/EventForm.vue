@@ -3,18 +3,18 @@
     <div class="event-form-content">      
       <div class="event-form-maincontent">
         <div>
-          <input placeholder="Enter Title..." class="event-form eventtitle" v-model="event.title"/>
+          <input placeholder="Enter Title..." class="event-form eventtitle" v-model="eventData.title"/>
         </div>
         <div>
-          <textarea placeholder="Enter Description..." class="event-form description" v-model="event.description"/>
+          <textarea placeholder="Enter Description..." class="event-form description" v-model="eventData.description"/>
         </div>
         <div>
-          <input placeholder="Enter Date..." class="event-form eventdate" v-model="event.date"/>
+          <input placeholder="Enter Date..." class="event-form eventdate" v-model="eventData.date"/>
         </div>
         <div>
-          <input placeholder="Enter Location..." class="event-form location" v-model="event.location" />
+          <input placeholder="Enter Location..." class="event-form location" v-model="eventData.location" />
         </div>
-        <button class="action save" @click="saveEvent">SAVE</button>
+        <button class="action save" @click="saveEvent()">{{ submitButtonLabel }}</button>
       </div>
     </div>
   </div>
@@ -23,9 +23,15 @@
 <script>
 
 export default {
+  computed: {
+    submitButtonLabel () {
+      return this.eventData.id ? 'Edit' : 'Add'
+    }
+  },
+
   data() {
     return {
-      event: {
+      eventData: {
         title: '',
         description: '',
         date: '',
@@ -35,17 +41,30 @@ export default {
     }
   },
 
-  name:'add'
+  name:'event-form',
 
-  // methods: {
-  //   navigateToPreviousPage() {
-  //     this.$router.go(-1)
-  //   },
-  //   saveEvent() {
-  //     this.$router.push({name: 'Events'})
-  //     this.$store.dispatch('addEvent', this.event)
-  //   }
-  // }  
+  methods: {
+    saveEvent() {
+      if (this.eventData.id) {
+        this.$emit('update:event', this.eventData)
+      } else {
+        this.$emit('saveEvent:event', this.eventData)
+      }      
+    }
+  },
+
+  mounted() {
+    if(this.event){
+      this.eventData=this.event
+    }
+  },
+
+  props: {
+    event: {
+      type: Object, 
+      required: false
+    }
+  }
 }
 
 </script>
