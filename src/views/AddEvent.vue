@@ -1,5 +1,11 @@
 <template>
   <div id="addEvent">
+    <div class="event-form-header">
+        <button class="action back" @click="navigateToPreviousPage">Back</button>
+        <div class="title">
+          <h2>Add Event</h2>
+        </div>
+      </div>
     <Event-form></Event-form>    
   </div>
 </template>
@@ -25,12 +31,28 @@ export default {
   },
 
   name:'add',
-
+  methods: {
+    navigateToPreviousPage() {
+      this.$router.go(-1)
+    }
+  }
 }
 
 </script>
 
 <style>
+
+.event-form-header {
+  align-content: center;
+  border-bottom: solid 1px gray;
+  margin-bottom: 10px;
+  padding: 8px 15px 8px 15px;
+  width: 97%;
+}
+
+.title {
+  text-align: center;
+}
 
 #addEvent {
   text-align: center;

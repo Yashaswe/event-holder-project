@@ -1,12 +1,6 @@
 <template>
   <div id="event-form">
-    <div class="event-form-content">
-      <div class="event-form-header">
-        <button class="action back" @click="navigateToPreviousPage">Back</button>
-        <div class="title">
-          <h2>Add Event</h2>
-        </div>
-      </div>
+    <div class="event-form-content">      
       <div class="event-form-maincontent">
         <div>
           <input placeholder="Enter Title..." class="event-form eventtitle" v-model="event.title"/>
@@ -73,18 +67,6 @@ export default {
   margin-top: 20px;
   padding: 10px;
   width: 25%;
-}
-
-.event-form-header {
-  align-content: center;
-  border-bottom: solid 1px gray;
-  margin-bottom: 10px;
-  padding: 8px 15px 8px 15px;
-  width: 97%;
-}
-
-.title {
-  text-align: center;
 }
 
 .event-form {
