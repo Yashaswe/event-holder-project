@@ -8,7 +8,7 @@
         </div>
       </div>
       <Event-form @update:event="editEventFinal" :event="event" v-if="event"/>
-      <div v-else>Loading...</div>         
+      <div v-else>Loading...</div>
     </div>
   </div>
 </template>
@@ -25,22 +25,22 @@ export default {
   data() {
     return {
       event: null,
-      notupdatedevent:null
+      notupdatedevent: null
     }
   },
   
   name:'edit',
 
   methods: {
-    navigateToPreviousPage(notupdatedevent) { 
-      console.log('notupdate',notupdatedevent)     
+    navigateToPreviousPage(notupdatedevent) {
+      console.log('notupdate',notupdatedevent)
       this.$router.push({name:'DisplayEvent',params:{id:notupdatedevent.id,event:notupdatedevent}})
     },
     editEventFinal(event) {
       console.log('edit',event)
       this.$store.dispatch('editEvent', event)
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
-    }  
+    }
    },
   mounted() {
     this.event = this.$route.params.event

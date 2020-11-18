@@ -10,8 +10,8 @@
       <div>
         <input placeholder="Enter address..." class="participantinfo address" v-model="participantData.address"/>
       </div>
-      <button class="action add" @click="saveParticipant()">{{ labelforparticipantsave }}</button>   
-    </div>   
+      <button class="action add" @click="saveParticipant()">{{ labelforparticipantsave }}</button>
+    </div>
   </div>
 </template>
 
@@ -26,25 +26,25 @@ export default {
 
   computed: {
     labelforparticipantsave() {
-      return this.participantData.participantid ? 'Edit' : 'Add' 
+      return this.participantData.participantid ? 'Edit' : 'Add'
     }    
   },
 
-  name:'participant-form',
+  name: 'participant-form',
 
   methods: {
     saveParticipant() {
       if(this.participantData.participantid) {
         this.$emit('updateParticipant:participant',this.participantData)
       }
-      else{
+      else {
         this.$emit('addParticipant:participant',this.participantData)
       }
     }
   },
 
   mounted() {        
-    if(this.participant){
+    if(this.participant) {
       this.participantData=this.participant
     }
   },

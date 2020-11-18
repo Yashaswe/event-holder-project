@@ -40,8 +40,8 @@ export default {
     }
   },
   mounted() {
-    this.event=this.$route.params.event
-    this.participant=this.$route.params.participant
+    this.event = this.$route.params.event
+    this.participant = this.$route.params.participant
   } 
 }
 

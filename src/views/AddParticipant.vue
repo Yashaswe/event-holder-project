@@ -39,7 +39,7 @@ export default {
     }
   },
   mounted() {
-    this.event=this.$route.params.event  
+    this.event = this.$route.params.event
   } 
 }
 

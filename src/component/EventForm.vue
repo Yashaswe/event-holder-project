@@ -1,6 +1,6 @@
 <template>
   <div id="event-form">
-    <div class="event-form-content">      
+    <div class="event-form-content">
       <div class="event-form-maincontent">
         <div>
           <input placeholder="Enter Title..." class="event-form eventtitle" v-model="eventData.title"/>
@@ -24,7 +24,7 @@
 
 export default {
   computed: {
-    submitButtonLabel () {
+    submitButtonLabel() {
       return this.eventData.id ? 'Edit' : 'Add'
     }
   },
@@ -47,21 +47,22 @@ export default {
     saveEvent() {
       if (this.eventData.id) {
         this.$emit('update:event', this.eventData)
-      } else {
+      }
+      else {
         this.$emit('saveEvent:event', this.eventData)
       }      
     }
   },
 
   mounted() {
-    if(this.event){
+    if(this.event) {
       this.eventData=this.event
     }
   },
 
   props: {
     event: {
-      type: Object, 
+      type: Object,
       required: false
     }
   }
