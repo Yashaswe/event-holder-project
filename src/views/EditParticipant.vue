@@ -7,7 +7,7 @@
           <h2>Edit Participant Information</h2>
         </div>
       </div>
-      <ParticipantForm @updateParticipant:participant="editParticipant" :participant="participant"/> 
+      <ParticipantForm @updateParticipant:participant="editParticipant" :participant="participant" v-if="participant"/>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       event: {},
-      participant: {}
+      participant: null
     }
   },
 
@@ -34,9 +34,9 @@ export default {
     navigateToPreviousPage(event) {
       this.$router.push({name: 'DisplayEvent', params:{id:event.id, event: event}})
     },
-    editParticipant(participant,event) {
+    editParticipant(participant) {
       this.$store.dispatch('editParticipant', {participant, event})
-      this.$router.push({name: 'DisplayEvent', params:{id: event.id, event: this.event}})
+      this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
     }
   },
   mounted() {

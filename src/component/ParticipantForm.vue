@@ -26,7 +26,7 @@ export default {
 
   computed: {
     labelforparticipantsave() {
-      return this.participantData.id ? 'Edit' : 'Add' 
+      return this.participantData.participantid ? 'Edit' : 'Add' 
     }    
   },
 
@@ -34,18 +34,17 @@ export default {
 
   methods: {
     saveParticipant() {
-      if(this.participantData.id) {
+      if(this.participantData.participantid) {
         this.$emit('updateParticipant:participant',this.participantData)
       }
       else{
         this.$emit('addParticipant:participant',this.participantData)
-        console.log('before',this.participantData)
       }
     }
   },
 
-  mounted() {
-    if(this.participant.id){
+  mounted() {        
+    if(this.participant){
       this.participantData=this.participant
     }
   },
