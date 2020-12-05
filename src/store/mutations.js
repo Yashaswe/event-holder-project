@@ -62,6 +62,9 @@ const mutations =  {
       }
     })
     localStorage.setItem('events',JSON.stringify(state.events))
+  },
+  updateEvents(state, events) {
+    state.events = events
   }
 }
 

@@ -52,7 +52,12 @@ export default {
   },
 
   mounted() {
-    this.events=this.$store.getters.getEvents
+    // this.events=this.$store.getters.getEvents
+    this.$store.dispatch('getEvents')
+      .then(() => {
+        this.events = this.$store.getters.getEvents
+      })
+
   }  
 }
 
