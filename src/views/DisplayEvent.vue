@@ -77,12 +77,17 @@ export default {
       this.$router.push({name: 'EditParticipant',params: {participantid: participant.participantid, participant: participant, event:event}})      
     },
     deleteParticipant(event,participant) {
-      console.log('here',participant)
-      this.$store.dispatch('deleteParticipant', {event,participant})
+      this.$store.dispatch('deleteParticipant', participant.id)
     }
   },
   mounted() {
     this.event=this.$route.params.event
+    this.$store.dispatch('getEvent',this.event.id)
+      .then(() => {
+        this.event = this.$store.getters.getEvent
+        console.log(this.$store.getters)
+      })
+
   }  
 }
 </script>

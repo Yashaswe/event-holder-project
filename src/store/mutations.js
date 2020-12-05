@@ -65,6 +65,9 @@ const mutations =  {
   },
   updateEvents(state, events) {
     state.events = events
+  },
+  updateEvent(state, event) {
+    state.event = event
   }
 }
 

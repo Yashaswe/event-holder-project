@@ -17,7 +17,7 @@
         <div>
           <input placeholder="Enter address..." class="participantinfo address" v-model="participant.address"/>
         </div>
-        <button class="action add" @click="addParticipant()">SAVE</button>   
+        <button class="action add" @click="addParticipant(participant)">SAVE</button>   
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       event: {},
+      event_Id:null,
       participant: {}
     }
   },
@@ -39,9 +40,12 @@ export default {
     navigateToPreviousPage(event) {
       this.$router.push({name: 'DisplayEvent', params:{id:event.id, event: event}})
     },
-    addParticipant() {
-      this.$store.dispatch('addParticipant', {participant: this.participant, event: this.event})
-      this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
+    addParticipant(participant,event_Id) {
+      event_Id = this.event.id
+      this.$store.dispatch('createParticipant', {participant,event_Id})
+        .then(() => {
+          this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
+      })
     }
   },
   mounted() {

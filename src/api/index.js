@@ -12,6 +12,17 @@ const getEvents = () => new Promise((resolve, reject) => {
     })
 })
 
+const getEvent = (eventid) => new Promise((resolve, reject) => {
+  console.log(eventid)
+  axios.get(`/events/${eventid}`)
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
 const createEvent = (event) => new Promise((resolve, reject) => {
   axios.post('/events',{
     title: event.title,
@@ -51,9 +62,76 @@ const editEvent = (event) => new Promise((resolve,reject) => {
     })
 })
 
+// const getParticipant = (event_Id) => new Promise((resolve, reject) => {
+//   axios.get('/participants')
+//     .then((response) => {
+//       resolve(response.data)
+//     })
+//     .catch((error) => {
+//       reject(error)
+//     })
+// })
+
+
+const createParticipant = ({participant, event_Id}) => new Promise((resolve, reject) => {
+  console.log(event_Id)
+  axios.post('/participants',{
+    name: participant.name,
+    occupation: participant.occupation,
+    address: participant.address,
+    event_id: event_Id
+  })
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error)
+  }) 
+  //  const getParticipants = (context) => new Promise((resolve, reject) => {
+  //   api.getParticipants()
+  //     .then((response) => {
+  //       context.commit('updateParticipants', response)
+  //       resolve()
+  //     })
+  //     .catch((error) => {
+  //       reject(error)
+  //     })
+  // })
+
+})
+
+const deleteParticipant = (participantId) => new Promise((resolve,reject) => {
+  axios.delete(`/participants/${participantId}`)
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
+// const editEvent = (event) => new Promise((resolve,reject) => {
+//     axios.put(`/event/$events{event.id}`,{
+//       title: event.title,
+//       description: event.description,
+//       date: event.date,
+//       location: event.location      
+//     })
+//     .then((response) => {
+//       resolve(response.data)
+//     })
+//     .catch((error) => {
+//       reject(error)
+//     })
+// })
+
 export default {
   getEvents,
   createEvent,
   deleteEvent,
-  editEvent
+  editEvent,
+  createParticipant,
+  deleteParticipant,
+  getEvent
+  // getParticipant
 }
