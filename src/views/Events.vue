@@ -57,7 +57,6 @@ export default {
       .then(() => {
         this.events = this.$store.getters.getEvents
       })
-
   }  
 }
 

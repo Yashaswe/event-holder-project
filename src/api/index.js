@@ -25,7 +25,35 @@ const createEvent = (event) => new Promise((resolve, reject) => {
     reject(error)
   })
 })
+
+const deleteEvent = (eventId) => new Promise((resolve,reject) => {
+  axios.delete(`/events/${eventId}`)
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
+const editEvent = (event) => new Promise((resolve,reject) => {
+    axios.put(`/event/${event.id}`,{
+      title: event.title,
+      description: event.description,
+      date: event.date,
+      location: event.location      
+    })
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
 export default {
   getEvents,
-  createEvent
+  createEvent,
+  deleteEvent,
+  editEvent
 }

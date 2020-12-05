@@ -39,10 +39,34 @@ import api from '../api'
         reject(error)
       })
   })
+
+  const deleteEvent = (context,eventId) => new Promise ((resolve,reject) => {
+    console.log(context)
+    api.deleteEvent(eventId)
+      .then((response) => {
+        resolve(response)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
+
+  const editEvent = (context, eventId) => new Promise ((resolve, reject) => {
+    console.log(context)
+    api.editEvent(eventId)
+    .then((response) => {
+      resolve(response)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+  })
   
   export default {
     getEvents,
-    createEvent
+    createEvent,
+    deleteEvent,
+    editEvent
   }
   
 // }

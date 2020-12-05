@@ -44,9 +44,10 @@ export default {
       this.$router.push({name:'DisplayEvent',params:{id:notupdatedevent.id,event:notupdatedevent}})
     },
     editEventFinal(event) {
-      console.log('edit',event)
       this.$store.dispatch('editEvent', event)
+        .then(() => {
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
+        })
     }  
    },
   mounted() {

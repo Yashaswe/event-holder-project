@@ -62,8 +62,10 @@ export default {
       this.$router.push({name:'EditEvent',params: {id:event.id,event: event}})
     },
     deleteEvent(event) {
-      this.$store.dispatch('deleteEvent',event)
-      this.$router.push({name:'Events'})
+      this.$store.dispatch('deleteEvent',event.id)
+        .then(() => {
+          this.$router.push({name:'Events'})
+        })   
     },
     navigateToEvents() {
       this.$router.push({name:'Events'})
