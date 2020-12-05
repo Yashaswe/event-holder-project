@@ -12,6 +12,20 @@ const getEvents = () => new Promise((resolve, reject) => {
     })
 })
 
+const createEvent = (event) => new Promise((resolve, reject) => {
+  axios.post('/events',{
+    title: event.title,
+    description: event.description,
+    date: event.date,
+    location: event.location})
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error)
+  })
+})
 export default {
-  getEvents
+  getEvents,
+  createEvent
 }

@@ -28,9 +28,21 @@ import api from '../api'
         reject(error)
       })
   })
+
+  const createEvent = (context,event) => new Promise((resolve, reject) => {
+    console.log(context)
+    api.createEvent(event)
+      .then((response) => {
+        resolve(response)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
   
   export default {
-    getEvents
+    getEvents,
+    createEvent
   }
   
 // }

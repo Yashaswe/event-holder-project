@@ -20,7 +20,7 @@
         <div>
           <input placeholder="Enter Location..." class="addinfo location" v-model="event.location" />
         </div>
-        <button class="action add" @click="addEvent">SAVE</button>
+        <button class="action add" @click="addEvent(event)">SAVE</button>
       </div>
     </div>
   </div>
@@ -47,9 +47,15 @@ export default {
     navigateToPreviousPage() {
       this.$router.go(-1)
     },
-    addEvent() {
-      this.$router.push({name: 'Events'})
-      this.$store.dispatch('addEvent', this.event)
+    addEvent(event) {
+      this.$store.dispatch('createEvent', event)
+      .then(() => {
+        this.$router.push({name: 'Events'})
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
     }
   }  
 }
