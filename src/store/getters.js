@@ -4,6 +4,9 @@ const getters = {
   },
   getEvent(state) {
     return state.event    
+  },
+  getParticipants(state) {
+    return state.participants
   }
 }
 

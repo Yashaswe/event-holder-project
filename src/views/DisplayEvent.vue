@@ -29,7 +29,7 @@
             <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
           </div>
           <div class="participant-content">         
-            <div class="participant" v-for="participant in event.participants" :key="participant.participantid">
+            <div class="participant" v-for="participant in participants" :key="participant.id">
               <h2>{{participant.name}}</h2>
               <p>{{participant.occupation}}</p>
               <p>{{participant.address}}</p>
@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       event: null,
-      participant: {}
+      participants: {},
+      participant: {},
     }
   },
 
@@ -81,14 +82,19 @@ export default {
     }
   },
   mounted() {
-    this.event=this.$route.params.event
-    this.$store.dispatch('getEvent',this.event.id)
+    if (this.$route.params.event) {
+      localStorage.setItem('eventId',this.$route.params.event.id)
+    }
+    this.$store.dispatch('getEvent',localStorage.getItem('eventId'))
       .then(() => {
         this.event = this.$store.getters.getEvent
-        console.log(this.$store.getters)
-      })
-
-  }  
+    })
+    this.$store.dispatch('getParticipants')
+      .then(() => {
+        this.participants = this.$store.getters.getParticipants
+        console.log('particpants',this.$store.getters.getParticipants)
+    })
+  }
 }
 </script>
 

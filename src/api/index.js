@@ -23,6 +23,7 @@ const getEvent = (eventid) => new Promise((resolve, reject) => {
     })
 })
 
+
 const createEvent = (event) => new Promise((resolve, reject) => {
   axios.post('/events',{
     title: event.title,
@@ -62,6 +63,28 @@ const editEvent = (event) => new Promise((resolve,reject) => {
     })
 })
 
+const getParticipants = () => new Promise((resolve, reject) => {
+  console.log()
+  axios.get('/participants')
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
+const editParticipant = (participant) => new Promise((resolve, reject) => {
+  console.log(participant)
+  axios.put(`/participant/${participant.id}`)
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
 // const getParticipant = (event_Id) => new Promise((resolve, reject) => {
 //   axios.get('/participants')
 //     .then((response) => {
@@ -71,7 +94,6 @@ const editEvent = (event) => new Promise((resolve,reject) => {
 //       reject(error)
 //     })
 // })
-
 
 const createParticipant = ({participant, event_Id}) => new Promise((resolve, reject) => {
   console.log(event_Id)
@@ -87,6 +109,8 @@ const createParticipant = ({participant, event_Id}) => new Promise((resolve, rej
   .catch((error) => {
     reject(error)
   }) 
+})
+
   //  const getParticipants = (context) => new Promise((resolve, reject) => {
   //   api.getParticipants()
   //     .then((response) => {
@@ -98,15 +122,13 @@ const createParticipant = ({participant, event_Id}) => new Promise((resolve, rej
   //     })
   // })
 
-})
-
 const deleteParticipant = (participantId) => new Promise((resolve,reject) => {
   axios.delete(`/participants/${participantId}`)
     .then((response) => {
       resolve(response.data)
     })
     .catch((error) => {
-      reject(error)
+      25 |  reject(error)
     })
 })
 
@@ -132,6 +154,7 @@ export default {
   editEvent,
   createParticipant,
   deleteParticipant,
-  getEvent
-  // getParticipant
+  getEvent,
+  getParticipants,
+  editParticipant
 }
