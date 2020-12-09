@@ -76,7 +76,11 @@ const getParticipants = () => new Promise((resolve, reject) => {
 
 const editParticipant = (participant) => new Promise((resolve, reject) => {
   console.log(participant)
-  axios.put(`/participant/${participant.id}`)
+  axios.put(`/participant/${participant.id}`,{
+    name: participant.name,
+    occupation: participant.occupation,
+    address: participant.address
+  })
     .then((response) => {
       resolve(response.data)
     })
@@ -84,16 +88,6 @@ const editParticipant = (participant) => new Promise((resolve, reject) => {
       reject(error)
     })
 })
-
-// const getParticipant = (event_Id) => new Promise((resolve, reject) => {
-//   axios.get('/participants')
-//     .then((response) => {
-//       resolve(response.data)
-//     })
-//     .catch((error) => {
-//       reject(error)
-//     })
-// })
 
 const createParticipant = ({participant, event_Id}) => new Promise((resolve, reject) => {
   console.log(event_Id)
@@ -111,41 +105,15 @@ const createParticipant = ({participant, event_Id}) => new Promise((resolve, rej
   }) 
 })
 
-  //  const getParticipants = (context) => new Promise((resolve, reject) => {
-  //   api.getParticipants()
-  //     .then((response) => {
-  //       context.commit('updateParticipants', response)
-  //       resolve()
-  //     })
-  //     .catch((error) => {
-  //       reject(error)
-  //     })
-  // })
-
 const deleteParticipant = (participantId) => new Promise((resolve,reject) => {
   axios.delete(`/participants/${participantId}`)
     .then((response) => {
       resolve(response.data)
     })
     .catch((error) => {
-      25 |  reject(error)
+      reject(error)
     })
 })
-
-// const editEvent = (event) => new Promise((resolve,reject) => {
-//     axios.put(`/event/$events{event.id}`,{
-//       title: event.title,
-//       description: event.description,
-//       date: event.date,
-//       location: event.location      
-//     })
-//     .then((response) => {
-//       resolve(response.data)
-//     })
-//     .catch((error) => {
-//       reject(error)
-//     })
-// })
 
 export default {
   getEvents,

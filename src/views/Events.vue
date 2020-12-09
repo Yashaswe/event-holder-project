@@ -11,10 +11,13 @@
       </div>
     </div>
     <div class="events">
-      <div v-if="!events.length" class="no_events">
-        <b>No upcoming Events!!</b><br><br>
-        ADD EVENT
-      </div>
+      <Loading v-if="loading" />
+      <div v-else>
+        <div v-if="!events.length" class="no_events">
+          <b>No upcoming Events!!</b><br><br>
+          ADD EVENT
+        </div>
+        
         <div class="event" v-for="event in events" :key="event.id" @click="navigateToDisplayEvent(event)">
           <div class="event-title">
             <h2>
@@ -27,16 +30,25 @@
             </h4>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 
+import Loading from '@/components/Loading.vue'
+
 export default {
+
+  components: {
+    Loading
+  },
+
   data() {
     return {
-      events:{}
+      events:{},
+      loading: false
     }
   },
 
@@ -52,10 +64,15 @@ export default {
   },
 
   mounted() {
+    this.loading = true
     // this.events=this.$store.getters.getEvents
     this.$store.dispatch('getEvents')
       .then(() => {
         this.events = this.$store.getters.getEvents
+        this.loading = false
+      })
+      .catch(() => {
+        this.loading = false
       })
   }  
 }

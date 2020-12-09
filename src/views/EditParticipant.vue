@@ -39,7 +39,7 @@ export default {
     navigateToPreviousPage(event) {
       this.$router.push({name: 'DisplayEvent', params:{id:event.id, event: event}})
     },
-    editParticipant(participant) {
+    editParticipant(participant, event) {
       this.$store.dispatch('editParticipant', participant)
         .then(() => {
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
