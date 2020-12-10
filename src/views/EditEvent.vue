@@ -1,5 +1,5 @@
 <template>
-  <div id="edit-Event" v-if="event">
+  <div id="edit-Event">
     <div class="edit-content">
       <div class="edit-header">
         <button class="action back" @click="navigateToPreviousPage(notupdatedevent)">Back</button>
@@ -7,40 +7,33 @@
           <h2>Edit Event</h2>
         </div>
       </div>
-      <div class="edit-maincontent">
-        <div>
-          <input class="edit-info eventtitle" v-model="event.title" placeholder="Event Title"/>
-        </div>
-        <div>
-          <textarea class="edit-info description" v-model="event.description" placeholder="Description"/>
-        </div>
-        <div>
-          <input class="edit-info eventdate" v-model="event.date" placeholder="Date"/>
-        </div>
-        <div>
-          <input class="edit-info location" v-model="event.location" placeholder="Location"/>
-        </div>
-        <button class="action edit" @click="editEventFinal(event)">SAVE</button>
-      </div>
+      <Event-form @update:event="editEventFinal" :event="event" v-if="event"/>
+      <div v-else>Loading...</div>
     </div>
   </div>
 </template>
 
 <script>
 
+import EventForm from '../component/EventForm.vue'
+
 export default {
+  components: {
+    EventForm
+  },
+
   data() {
     return {
       event: null,
-      notupdatedevent:null
+      notupdatedevent: null
     }
   },
   
   name:'edit',
 
   methods: {
-    navigateToPreviousPage(notupdatedevent) { 
-      console.log(this.notupdatedevent)     
+    navigateToPreviousPage(notupdatedevent) {
+      console.log('notupdate',notupdatedevent)
       this.$router.push({name:'DisplayEvent',params:{id:notupdatedevent.id,event:notupdatedevent}})
     },
     editEventFinal(event) {
@@ -48,7 +41,7 @@ export default {
         .then(() => {
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
         })
-    }  
+    }
    },
   mounted() {
     this.event = this.$route.params.event

@@ -49,7 +49,7 @@
 
 <script>
 
-import Loading from '@/components/Loading.vue'
+import Loading from '@/component/Loading.vue'
 
 export default {
   components: {
@@ -69,7 +69,7 @@ export default {
 
   methods: {
     navigateToPreviousPage() {
-      this.$router.go(-1)
+      this.$router.push({name:'Events'})
     },
     editEvent(event) {
       this.$router.push({name:'EditEvent',params: {id:event.id,event: event}})

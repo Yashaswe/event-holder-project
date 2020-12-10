@@ -37,7 +37,7 @@
 
 <script>
 
-import Loading from '@/components/Loading.vue'
+import Loading from '@/component/Loading.vue'
 
 export default {
 
@@ -71,6 +71,7 @@ export default {
         this.events = this.$store.getters.getEvents
         this.loading = false
       })
+  
       .catch(() => {
         this.loading = false
       })

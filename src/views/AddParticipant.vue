@@ -6,26 +6,21 @@
         <div class="title">
           <h2>Add Participant</h2>
         </div>
-      </div>
-      <div class="add-maincontent">
-        <div>
-          <input placeholder="Enter Name..." class="participantinfo name" v-model="participant.name"/>
-        </div>
-        <div>
-          <input placeholder="Enter Occupation..." class="participantinfo occupation" v-model="participant.occupation"/>
-        </div>
-        <div>
-          <input placeholder="Enter address..." class="participantinfo address" v-model="participant.address"/>
-        </div>
-        <button class="action add" @click="addParticipant(participant)">SAVE</button>   
-      </div>
+
+      </div>   
+      <ParticipantForm @addParticipant:participant="addParticipant"/>
     </div>
   </div>
 </template>
 
 <script>
 
+import ParticipantForm from '../component/ParticipantForm.vue'
 export default {
+  components: {
+    ParticipantForm
+  },
+
   data() {
     return {
       event: {},
@@ -49,7 +44,7 @@ export default {
     }
   },
   mounted() {
-    this.event=this.$route.params.event  
+    this.event = this.$route.params.event
   } 
 }
 
@@ -65,15 +60,6 @@ export default {
   padding: 15px;
 }
 
-.action.add {
-  background-color: #4A8DA2;
-  color: white;
-  font-size: 20px;
-  margin-top: 20px;
-  padding: 10px;
-  width: 25%;
-}
-
 .add-header {
   align-content: center;
   border-bottom: solid 1px gray;
@@ -84,19 +70,6 @@ export default {
 
 .title {
   text-align: center;
-}
-
-.participantinfo {
-  background-color: #FAFAFA;
-  border-radius: 20px;
-  border: 2px solid #4A8DA2;
-  color: #4A8DA2;
-  font-family: serif;
-  font-size: 25px;
-  margin-top: 15px;
-  outline: none;
-  padding: 20px;
-  width: 75%;
 }
 
 #addParticipant {
