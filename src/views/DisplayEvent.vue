@@ -2,41 +2,43 @@
   <div id="display">
     <Loading v-if="loading" />
     <div v-else class="display-content">
-      <div class="display-header">
-        <div>
-          <button class="actiondisplay back" @click="navigateToPreviousPage">Back</button>
-        </div>
-        <div class="title">
-          <h1>{{event.title}}</h1>
-        </div>
-        <div class="display-right-header">
-          <button class="actiondisplay edit" @click="editEvent(event)">edit</button>
-          <button class="actiondisplay delete" @click="deleteEvent(event)">delete</button>
-        </div>
-      </div>
-      <div class="display-maincontent">
-        <p>{{event.date}}</p>
-        <h4>{{event.location}}</h4>
-        <div class="event-description">
-          Description: {{event.description}}
-        </div>
-        <br>
-        <br>
-        <button class="actiondisplay all-events" @click="navigateToEvents">View All Events</button>
-        <br><br>
-        <div class="participant-section">
-          <div class="participant-header">
-            <h2>Participants</h2>
-            <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
+      <div v-if="event">
+        <div class="display-header">
+          <div>
+            <button class="actiondisplay back" @click="navigateToPreviousPage">Back</button>
           </div>
-          <div class="participant-content">  
-            <Loading v-if="participants_loading"/>       
-            <div v-else class="participant" v-for="participant in participants" :key="participant.id">
-              <h2>{{participant.name}}</h2>
-              <p>{{participant.occupation}}</p>
-              <p>{{participant.address}}</p>
-              <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
-              <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
+          <div class="title">
+            <h1>{{event.title}}</h1>
+          </div>
+          <div class="display-right-header">
+            <button class="actiondisplay edit" @click="editEvent(event)">edit</button>
+            <button class="actiondisplay delete" @click="deleteEvent(event)">delete</button>
+          </div>
+        </div>
+        <div class="display-maincontent">
+          <p>{{event.date}}</p>
+          <h4>{{event.location}}</h4>
+          <div class="event-description">
+            Description: {{event.description}}
+          </div>
+          <br>
+          <br>
+          <button class="actiondisplay all-events" @click="navigateToEvents">View All Events</button>
+          <br><br>
+          <div class="participant-section">
+            <div class="participant-header">
+              <h2>Participants</h2>
+              <button class="actiondisplay add" @click="addParticipant(event)">Add</button>
+            </div>
+            <div class="participant-content">  
+              <Loading v-if="participants_loading"/>       
+              <div v-else class="participant" v-for="participant in participants" :key="participant.id">
+                <h2>{{participant.name}}</h2>
+                <p>{{participant.occupation}}</p>
+                <p>{{participant.address}}</p>
+                <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
+                <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
+              </div>
             </div>
           </div>
         </div>

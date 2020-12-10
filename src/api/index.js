@@ -34,7 +34,7 @@ const createEvent = (event) => new Promise((resolve, reject) => {
     resolve(response.data)
   })
   .catch((error) => {
-    reject(error)
+    reject(error.response.data)
   })
 })
 
@@ -59,7 +59,7 @@ const editEvent = (event) => new Promise((resolve,reject) => {
       resolve(response.data)
     })
     .catch((error) => {
-      reject(error)
+      reject(error.response.data)
     })
 })
 
@@ -85,7 +85,7 @@ const editParticipant = (participant) => new Promise((resolve, reject) => {
       resolve(response.data)
     })
     .catch((error) => {
-      reject(error)
+      reject(error.response.data)
     })
 })
 
@@ -101,7 +101,7 @@ const createParticipant = ({participant, event_Id}) => new Promise((resolve, rej
     resolve(response.data)
   })
   .catch((error) => {
-    reject(error)
+    reject(error.response.data)
   }) 
 })
 
