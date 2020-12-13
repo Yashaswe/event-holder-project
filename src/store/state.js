@@ -1,5 +1,5 @@
 const state = {
-  events: localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [],
+  events: [],
   event: {},
   participants:{}
 }

@@ -3,12 +3,21 @@
     <div class="participant-form-maincontent">
       <div>
         <input placeholder="Enter Name..." class="participantinfo name" v-model="participantData.name"/>
+        <div v-if="error && error.name">
+          <span class="error" v-for="i in error.name" :key="i"> {{ i }}</span>
+        </div>
       </div>
       <div>
         <input placeholder="Enter Occupation..." class="participantinfo occupation" v-model="participantData.occupation"/>
+        <div v-if="error && error.occupation">
+          <span class="error" v-for="i in error.occupation" :key="i"> {{ i }}</span>
+        </div>
       </div>
       <div>
         <input placeholder="Enter address..." class="participantinfo address" v-model="participantData.address"/>
+        <div v-if="error && error.address">
+          <span class="error" v-for="i in error.address" :key="i"> {{ i }}</span>
+        </div>
       </div>
       <button class="action add" @click="saveParticipant()">{{ labelforparticipantsave }}</button>
     </div>
@@ -51,6 +60,10 @@ export default {
 
   props: {
     participant: {
+      type: Object,
+      required: false
+    },
+    error: {
       type: Object,
       required: false
     }

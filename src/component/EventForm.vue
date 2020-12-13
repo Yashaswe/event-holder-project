@@ -4,15 +4,27 @@
       <div class="event-form-maincontent">
         <div>
           <input placeholder="Enter Title..." class="event-form eventtitle" v-model="eventData.title"/>
+          <div v-if="error && error.title">
+            <span class="error" v-for="i in error.title" :key="i"> {{ i }}</span>
+          </div>
         </div>
         <div>
           <textarea placeholder="Enter Description..." class="event-form description" v-model="eventData.description"/>
+          <div v-if="error && error.description">
+            <span class="error" v-for="i in error.description" :key="i"> {{ i }}</span>
+          </div>
         </div>
         <div>
           <input placeholder="Enter Date..." class="event-form eventdate" v-model="eventData.date"/>
+          <div v-if="error && error.date">
+            <span class="error" v-for="i in error.date" :key="i"> {{ i }}</span>
+          </div>
         </div>
         <div>
           <input placeholder="Enter Location..." class="event-form location" v-model="eventData.location" />
+          <div v-if="error && error.location">
+            <span class="error" v-for="i in error.location" :key="i"> {{ i }}</span>
+          </div>
         </div>
         <button class="action save" @click="saveEvent()">{{ submitButtonLabel }}</button>
       </div>
@@ -64,6 +76,10 @@ export default {
     event: {
       type: Object,
       required: false
+    },
+    error: {
+      type: Object,
+      required: false
     }
   }
 }
@@ -87,6 +103,10 @@ export default {
   margin-top: 20px;
   padding: 10px;
   width: 25%;
+}
+
+.error {
+  color: red;
 }
 
 .event-form {

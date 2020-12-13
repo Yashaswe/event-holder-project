@@ -108,16 +108,16 @@ import api from '../api'
       })
   })
 
-  const getParticipants = (context) => new Promise((resolve, reject) => {
-    api.getParticipants()
-      .then((response) => {
-        context.commit('updateParticipants', response)
-        resolve()
-      })
-      .catch((error) => {
-        reject(error)
-      })
-  })
+  // const getParticipants = (context) => new Promise((resolve, reject) => {
+  //   api.getParticipants()
+  //     .then((response) => {
+  //       context.commit('updateParticipants', response)
+  //       resolve()
+  //     })
+  //     .catch((error) => {
+  //       reject(error)
+  //     })
+  // })
   
   export default {
     getEvents,
@@ -127,7 +127,6 @@ import api from '../api'
     createParticipant,
     deleteParticipant,
     getEvent,
-    getParticipants,
     editParticipant
   }
   

@@ -7,8 +7,8 @@
           <h2>Edit Event</h2>
         </div>
       </div>
-      <Event-form @update:event="editEventFinal" :event="event" v-if="event"/>
-      <div v-else>Loading...</div>
+      <Event-form @update:event="editEventFinal" :event="event" :error="error" v-if="event"/>
+      <Loading v-else/>
     </div>
   </div>
 </template>
@@ -16,16 +16,19 @@
 <script>
 
 import EventForm from '../component/EventForm.vue'
+import Loading from '../component/Loading'
 
 export default {
   components: {
-    EventForm
+    EventForm,
+    Loading
   },
 
   data() {
     return {
       event: null,
-      notupdatedevent: null
+      notupdatedevent: null,
+      error: {}
     }
   },
   
@@ -41,6 +44,9 @@ export default {
         .then(() => {
       this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
         })
+        .catch((error) => {
+        this.error=error
+      })
     }
    },
   mounted() {

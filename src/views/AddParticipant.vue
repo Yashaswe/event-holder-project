@@ -8,7 +8,7 @@
         </div>
 
       </div>   
-      <ParticipantForm @addParticipant:participant="addParticipant"/>
+      <ParticipantForm @addParticipant:participant="addParticipant" :error="error"/>
     </div>
   </div>
 </template>
@@ -25,7 +25,8 @@ export default {
     return {
       event: {},
       event_Id:null,
-      participant: {}
+      participant: {},
+      error: {}
     }
   },
 
@@ -40,7 +41,10 @@ export default {
       this.$store.dispatch('createParticipant', {participant,event_Id})
         .then(() => {
           this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
-      })
+        })
+        .catch((error) => {
+          this.error=error
+        })
     }
   },
   mounted() {

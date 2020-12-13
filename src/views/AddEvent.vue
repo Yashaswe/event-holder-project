@@ -6,7 +6,7 @@
           <h2>Add Event</h2>
         </div>
       </div>
-    <Event-form @saveEvent:event="saveEvent"/> 
+    <Event-form @saveEvent:event="saveEvent" :error="error"/> 
   </div>
 </template>
 
@@ -26,7 +26,8 @@ export default {
         date: '',
         location: '',
         participants: []
-      }
+      },
+      error: {}
     }
   },
 
@@ -41,7 +42,7 @@ export default {
         this.$router.push({name: 'Events'})
       })
       .catch((error) => {
-        console.log(error)
+        this.error=error
       })
     }
   }

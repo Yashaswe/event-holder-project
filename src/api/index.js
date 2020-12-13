@@ -63,17 +63,6 @@ const editEvent = (event) => new Promise((resolve,reject) => {
     })
 })
 
-const getParticipants = () => new Promise((resolve, reject) => {
-  console.log()
-  axios.get('/participants')
-    .then((response) => {
-      resolve(response.data)
-    })
-    .catch((error) => {
-      reject(error)
-    })
-})
-
 const editParticipant = (participant) => new Promise((resolve, reject) => {
   console.log(participant)
   axios.put(`/participant/${participant.id}`,{
@@ -123,6 +112,5 @@ export default {
   createParticipant,
   deleteParticipant,
   getEvent,
-  getParticipants,
   editParticipant
 }

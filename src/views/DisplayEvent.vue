@@ -32,12 +32,12 @@
             </div>
             <div class="participant-content">  
               <Loading v-if="participants_loading"/>       
-              <div v-else class="participant" v-for="participant in participants" :key="participant.id">
+              <div v-else class="participant" v-for="participant in event.participants" :key="participant.id">
                 <h2>{{participant.name}}</h2>
                 <p>{{participant.occupation}}</p>
                 <p>{{participant.address}}</p>
                 <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
-                <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
+                <button class="actiondisplay participant-delete" @click="deleteParticipant(participant,event)">delete</button>
               </div>
             </div>
           </div>
@@ -49,7 +49,9 @@
 
 <script>
 
+
 import Loading from '@/component/Loading.vue'
+
 
 export default {
   components: {
@@ -89,13 +91,9 @@ export default {
     editParticipantInfo(event,participant) {
       this.$router.push({name: 'EditParticipant',params: {participantid: participant.id, participant: participant, event:event}})      
     },
-    deleteParticipant(participant) {
+    deleteParticipant(participant,event) {
       this.$store.dispatch('deleteParticipant', participant.id)
-      this.$store.dispatch('getParticipants')
-      .then(() => {
-        this.participants = this.$store.getters.getParticipants
-        console.log('particpants',this.$store.getters.getParticipants)
-      })
+      this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
     }
   },
 
@@ -112,16 +110,6 @@ export default {
     })
       .catch(() => {
         this.loading = false
-      })
-
-    this.participants_loading = true
-    this.$store.dispatch('getParticipants')
-      .then(() => {
-        this.participants = this.$store.getters.getParticipants
-        this.participants_loading = false
-    })
-      .catch(() => {
-        this.participants_loading = false
       })
   }
 }
