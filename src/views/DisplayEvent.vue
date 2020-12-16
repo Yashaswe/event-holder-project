@@ -37,7 +37,7 @@
                 <p>{{participant.occupation}}</p>
                 <p>{{participant.address}}</p>
                 <button class="actiondisplay participant-edit" @click="editParticipantInfo(event,participant)">edit</button>
-                <button class="actiondisplay participant-delete" @click="deleteParticipant(participant,event)">delete</button>
+                <button class="actiondisplay participant-delete" @click="deleteParticipant(participant)">delete</button>
               </div>
             </div>
           </div>
@@ -91,9 +91,21 @@ export default {
     editParticipantInfo(event,participant) {
       this.$router.push({name: 'EditParticipant',params: {participantid: participant.id, participant: participant, event:event}})      
     },
-    deleteParticipant(participant,event) {
+    deleteParticipant(participant) {
+      this.participants_loading = true
+      
       this.$store.dispatch('deleteParticipant', participant.id)
-      this.$router.push({name:'DisplayEvent', params: {id:event.id,event: event}})
+      this.$store.dispatch('getEvent',localStorage.getItem('eventId'))
+      .then(() => {
+        this.event = this.$store.getters.getEvent
+        this.loading = false
+        this.participants_loading = false
+    })
+      .catch(() => {
+        this.loading = false
+        this.participants_loading = false
+      })      
+      this.participants_loading = false
     }
   },
 

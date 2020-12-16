@@ -64,7 +64,6 @@ const editEvent = (event) => new Promise((resolve,reject) => {
 })
 
 const editParticipant = (participant) => new Promise((resolve, reject) => {
-  console.log(participant)
   axios.put(`/participant/${participant.id}`,{
     name: participant.name,
     occupation: participant.occupation,
@@ -74,6 +73,7 @@ const editParticipant = (participant) => new Promise((resolve, reject) => {
       resolve(response.data)
     })
     .catch((error) => {
+      console.log('error',error)
       reject(error.response.data)
     })
 })
