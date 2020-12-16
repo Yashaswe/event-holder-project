@@ -16,8 +16,7 @@
         <div v-if="!events.length" class="no_events">
           <b>No upcoming Events!!</b><br><br>
           ADD EVENT
-        </div>
-        
+        </div>        
         <div class="event" v-for="event in events" :key="event.id" @click="navigateToDisplayEvent(event)">
           <div class="event-title">
             <h2>

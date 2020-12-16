@@ -100,7 +100,7 @@ export default {
         this.event = this.$store.getters.getEvent
         this.loading = false
         this.participants_loading = false
-    })
+      })
       .catch(() => {
         this.loading = false
         this.participants_loading = false

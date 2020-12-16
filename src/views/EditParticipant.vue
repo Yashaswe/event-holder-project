@@ -37,13 +37,13 @@ export default {
     },
     editParticipant(participant, event) {
       this.$store.dispatch('editParticipant', participant)
-        .then(() => {
-          console.log()
-          this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
-        })
-        .catch((error) => {
-          this.error=error
-          console.log(error)
+      .then(() => {
+        console.log()
+        this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
+      })
+      .catch((error) => {
+        this.error=error
+        console.log(error)
       })
     },
   },

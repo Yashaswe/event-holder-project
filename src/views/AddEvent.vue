@@ -1,11 +1,11 @@
 <template>
   <div id="addEvent">
     <div class="event-form-header">
-        <button class="action back" @click="navigateToPreviousPage">Back</button>
-        <div class="title">
-          <h2>Add Event</h2>
-        </div>
+      <button class="action back" @click="navigateToPreviousPage">Back</button>
+      <div class="title">
+        <h2>Add Event</h2>
       </div>
+    </div>
     <Event-form @saveEvent:event="saveEvent" :error="error"/> 
   </div>
 </template>

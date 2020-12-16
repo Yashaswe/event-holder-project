@@ -6,7 +6,6 @@
         <div class="title">
           <h2>Add Participant</h2>
         </div>
-
       </div>   
       <ParticipantForm @addParticipant:participant="addParticipant" :error="error"/>
     </div>
@@ -39,14 +38,15 @@ export default {
     addParticipant(participant,event_Id) {
       event_Id = this.event.id
       this.$store.dispatch('createParticipant', {participant,event_Id})
-        .then(() => {
-          this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
-        })
-        .catch((error) => {
-          this.error=error
-        })
+      .then(() => {
+        this.$router.push({name: 'DisplayEvent', params:{id: this.event.id, event: this.event}})
+      })
+      .catch((error) => {
+        this.error=error
+      })
     }
   },
+
   mounted() {
     this.event = this.$route.params.event
   } 

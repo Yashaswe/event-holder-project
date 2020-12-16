@@ -4,23 +4,23 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 const getEvents = () => new Promise((resolve, reject) => {
   axios.get('/events')
-    .then((response) => {
-      resolve(response.data)
-    })
-    .catch((error) => {
-      reject(error)
-    })
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error)
+  })
 })
 
 const getEvent = (eventid) => new Promise((resolve, reject) => {
   console.log(eventid)
   axios.get(`/events/${eventid}`)
-    .then((response) => {
-      resolve(response.data)
-    })
-    .catch((error) => {
-      reject(error)
-    })
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error)
+  })
 })
 
 
@@ -40,27 +40,27 @@ const createEvent = (event) => new Promise((resolve, reject) => {
 
 const deleteEvent = (eventId) => new Promise((resolve,reject) => {
   axios.delete(`/events/${eventId}`)
-    .then((response) => {
-      resolve(response.data)
-    })
-    .catch((error) => {
-      reject(error)
-    })
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error)
+  })
 })
 
 const editEvent = (event) => new Promise((resolve,reject) => {
-    axios.put(`/event/${event.id}`,{
-      title: event.title,
-      description: event.description,
-      date: event.date,
-      location: event.location      
-    })
-    .then((response) => {
-      resolve(response.data)
-    })
-    .catch((error) => {
-      reject(error.response.data)
-    })
+  axios.put(`/event/${event.id}`,{
+    title: event.title,
+    description: event.description,
+    date: event.date,
+    location: event.location
+  })
+  .then((response) => {
+    resolve(response.data)
+  })
+  .catch((error) => {
+    reject(error.response.data)
+  })
 })
 
 const editParticipant = (participant) => new Promise((resolve, reject) => {
@@ -69,13 +69,13 @@ const editParticipant = (participant) => new Promise((resolve, reject) => {
     occupation: participant.occupation,
     address: participant.address
   })
-    .then((response) => {
+  .then((response) => {
       resolve(response.data)
-    })
-    .catch((error) => {
+  })
+  .catch((error) => {
       console.log('error',error)
       reject(error.response.data)
-    })
+  })
 })
 
 const createParticipant = ({participant, event_Id}) => new Promise((resolve, reject) => {

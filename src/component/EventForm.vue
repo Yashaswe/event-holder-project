@@ -5,25 +5,25 @@
         <div>
           <input placeholder="Enter Title..." class="event-form eventtitle" v-model="eventData.title"/>
           <div v-if="error && error.title">
-            <span class="error" v-for="i in error.title" :key="i"> {{ i }}</span>
+            <span class="error" v-for="title in error.title" :key="title"> {{ title }}</span>
           </div>
         </div>
         <div>
           <textarea placeholder="Enter Description..." class="event-form description" v-model="eventData.description"/>
           <div v-if="error && error.description">
-            <span class="error" v-for="i in error.description" :key="i"> {{ i }}</span>
+            <span class="error" v-for="description in error.description" :key="description"> {{ description }}</span>
           </div>
         </div>
         <div>
           <input placeholder="Enter Date..." class="event-form eventdate" v-model="eventData.date"/>
           <div v-if="error && error.date">
-            <span class="error" v-for="i in error.date" :key="i"> {{ i }}</span>
+            <span class="error" v-for="date in error.date" :key="date"> {{ date }}</span>
           </div>
         </div>
         <div>
           <input placeholder="Enter Location..." class="event-form location" v-model="eventData.location" />
           <div v-if="error && error.location">
-            <span class="error" v-for="i in error.location" :key="i"> {{ i }}</span>
+            <span class="error" v-for="location in error.location" :key="location"> {{ location }}</span>
           </div>
         </div>
         <button class="action save" @click="saveEvent()">{{ submitButtonLabel }}</button>

@@ -41,10 +41,10 @@ export default {
     },
     editEventFinal(event) {
       this.$store.dispatch('editEvent', event)
-        .then(() => {
-      this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
-        })
-        .catch((error) => {
+      .then(() => {
+        this.$router.push({name: 'DisplayEvent',params:{id:event.id,event:event}})
+      })
+      .catch((error) => {
         this.error=error
       })
     }
