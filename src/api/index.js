@@ -3,6 +3,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:8000/api'
 
 const getEvents = () => new Promise((resolve, reject) => {
+  addAuthorizationHeader()
   axios.get('/events')
   .then((response) => {
     resolve(response.data)
@@ -13,7 +14,7 @@ const getEvents = () => new Promise((resolve, reject) => {
 })
 
 const getEvent = (eventid) => new Promise((resolve, reject) => {
-  console.log(eventid)
+  addAuthorizationHeader()
   axios.get(`/events/${eventid}`)
   .then((response) => {
     resolve(response.data)
@@ -25,6 +26,7 @@ const getEvent = (eventid) => new Promise((resolve, reject) => {
 
 
 const createEvent = (event) => new Promise((resolve, reject) => {
+  addAuthorizationHeader()
   axios.post('/events',{
     title: event.title,
     description: event.description,
@@ -39,6 +41,7 @@ const createEvent = (event) => new Promise((resolve, reject) => {
 })
 
 const deleteEvent = (eventId) => new Promise((resolve,reject) => {
+  addAuthorizationHeader()
   axios.delete(`/events/${eventId}`)
   .then((response) => {
     resolve(response.data)
@@ -49,6 +52,7 @@ const deleteEvent = (eventId) => new Promise((resolve,reject) => {
 })
 
 const editEvent = (event) => new Promise((resolve,reject) => {
+  addAuthorizationHeader()
   axios.put(`/event/${event.id}`,{
     title: event.title,
     description: event.description,
@@ -64,6 +68,7 @@ const editEvent = (event) => new Promise((resolve,reject) => {
 })
 
 const editParticipant = (participant) => new Promise((resolve, reject) => {
+  addAuthorizationHeader()
   axios.put(`/participant/${participant.id}`,{
     name: participant.name,
     occupation: participant.occupation,
@@ -79,7 +84,7 @@ const editParticipant = (participant) => new Promise((resolve, reject) => {
 })
 
 const createParticipant = ({participant, event_Id}) => new Promise((resolve, reject) => {
-  console.log(event_Id)
+  addAuthorizationHeader()
   axios.post('/participants',{
     name: participant.name,
     occupation: participant.occupation,
@@ -95,6 +100,7 @@ const createParticipant = ({participant, event_Id}) => new Promise((resolve, rej
 })
 
 const deleteParticipant = (participantId) => new Promise((resolve,reject) => {
+  addAuthorizationHeader()
   axios.delete(`/participants/${participantId}`)
     .then((response) => {
       resolve(response.data)
@@ -104,6 +110,24 @@ const deleteParticipant = (participantId) => new Promise((resolve,reject) => {
     })
 })
 
+const login = (loginData) => new Promise((resolve, reject) => {
+  axios.post('/login', {
+    email: loginData.email,
+    password: loginData.password
+  })
+    .then((response) => {
+      resolve(response.data)
+    })
+    .catch((error) => {
+      reject(error.response.data)
+    })
+})
+
+const addAuthorizationHeader = () => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`
+}
+
+
 export default {
   getEvents,
   createEvent,
@@ -112,5 +136,6 @@ export default {
   createParticipant,
   deleteParticipant,
   getEvent,
-  editParticipant
+  editParticipant,
+  login
 }

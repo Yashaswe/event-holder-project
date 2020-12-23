@@ -72,7 +72,12 @@ const mutations =  {
   },
   updateParticipants(state, participants) {
     state.participants = participants
+  },
+  loginUser(state, authData) {
+    state.token = authData.accessToken
+    localStorage.setItem('accessToken', authData.accessToken)
   }
+
 }
 
 export default mutations

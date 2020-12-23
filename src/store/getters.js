@@ -5,6 +5,14 @@ const getters = {
   getEvent(state) {
     return state.event    
   },
+  isUserLoggedIn(state) {
+    if (state.token === '' || state.token === "undefined") {
+      return false
+    }
+    else{
+      return true
+    } 
+  }
   // getParticipants(state) {
   //   return state.participants
   // }

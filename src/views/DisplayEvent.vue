@@ -57,6 +57,7 @@ export default {
   components: {
     Loading
   },
+
   data() {
     return {
       event: null,
@@ -115,14 +116,14 @@ export default {
     if (this.$route.params.event) {
       localStorage.setItem('eventId',this.$route.params.event.id)
     }
-    this.$store.dispatch('getEvent',localStorage.getItem('eventId'))
-      .then(() => {
-        this.event = this.$store.getters.getEvent
-        this.loading = false
+    this.$store.dispatch('getEvent',this.$route.params.event.id)
+    .then(() => {
+      this.event = this.$store.getters.getEvent
+      this.loading = false
     })
-      .catch(() => {
-        this.loading = false
-      })
+    .catch(() => {
+      this.loading = false
+    })
   }
 }
 </script>

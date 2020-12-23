@@ -108,6 +108,18 @@ const deleteParticipant = (context,participantId) => new Promise ((resolve,rejec
   })
 })
 
+const login = (context, loginData) => new Promise((resolve, reject) => {
+  api.login(loginData)
+    .then((response) => {
+      context.commit('loginUser', response)
+      resolve()
+    })
+    .catch((error) => {
+      reject(error)
+    })
+})
+
+
 // const getParticipants = (context) => new Promise((resolve, reject) => {
 //   api.getParticipants()
 //     .then((response) => {
@@ -127,7 +139,8 @@ export default {
   createParticipant,
   deleteParticipant,
   getEvent,
-  editParticipant
+  editParticipant,
+  login
 }
 
 // }
